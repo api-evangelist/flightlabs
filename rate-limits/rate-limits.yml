@@ -1,0 +1,54 @@
+rate_limits:
+  description: FlightLabs enforces per-plan rate limits measured as requests per
+    10-second window. All plans also have a monthly API call quota. Real-time flight
+    data is updated every 10 minutes. Exceeding the rate limit will result in throttled
+    responses.
+  url: https://www.goflightlabs.com
+  data_update_frequency: 10 minutes
+  limits:
+    - plan: Starter
+      requests_per_window: 10
+      window_seconds: 10
+      monthly_calls: 4000
+      real_time_results_per_request: 100
+
+    - plan: Basic
+      requests_per_window: 15
+      window_seconds: 10
+      monthly_calls: 10000
+      real_time_results_per_request: 500
+
+    - plan: Pro
+      requests_per_window: 20
+      window_seconds: 10
+      monthly_calls: 100000
+      real_time_results_per_request: unlimited
+
+    - plan: Premium
+      requests_per_window: 30
+      window_seconds: 10
+      monthly_calls: 500000
+      real_time_results_per_request: unlimited
+
+    - plan: Elite
+      requests_per_window: 40
+      window_seconds: 10
+      monthly_calls: 1000000
+      real_time_results_per_request: unlimited
+
+    - plan: Enterprise
+      requests_per_window: custom
+      window_seconds: 10
+      monthly_calls: custom
+      real_time_results_per_request: unlimited
+
+  parameters:
+    - name: limit
+      description: Optional query parameter to set max results per request (integer,
+        up to 10000)
+      type: integer
+      max: 10000
+
+  notes:
+    - Annual subscriptions include two months free compared to monthly billing.
+    - Real-time results cap applies per individual API request for Starter and Basic plans.

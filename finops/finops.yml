@@ -1,0 +1,59 @@
+finops:
+  description: FlightLabs pricing is structured around monthly API call quotas with
+    tiered plans. Annual subscriptions offer a discount equivalent to two free months.
+    A 7-day free trial is available for all new accounts. There are no listed per-call
+    overage charges; users should upgrade to the next tier when approaching limits.
+  url: https://www.goflightlabs.com
+  currency: USD
+  billing_periods:
+    - monthly
+    - annual
+  annual_discount: Two months free (equivalent to ~16.7% discount)
+  trial:
+    available: true
+    duration_days: 7
+    cost: 0
+    endpoints_accessible: all
+
+  cost_per_tier:
+    - plan: Starter
+      monthly_price: 249.99
+      annual_price_estimate: 2499.90
+      cost_per_1k_calls: 62.50
+      monthly_calls: 4000
+
+    - plan: Basic
+      monthly_price: 499.99
+      annual_price_estimate: 4999.90
+      cost_per_1k_calls: 50.00
+      monthly_calls: 10000
+
+    - plan: Pro
+      monthly_price: 1499.99
+      annual_price_estimate: 14999.90
+      cost_per_1k_calls: 15.00
+      monthly_calls: 100000
+
+    - plan: Premium
+      monthly_price: 2499.99
+      annual_price_estimate: 24999.90
+      cost_per_1k_calls: 5.00
+      monthly_calls: 500000
+
+    - plan: Elite
+      monthly_price: 4999.99
+      annual_price_estimate: 49999.90
+      cost_per_1k_calls: 5.00
+      monthly_calls: 1000000
+
+    - plan: Enterprise
+      monthly_price: custom
+      annual_price_estimate: 10000+
+      cost_per_1k_calls: negotiated
+      monthly_calls: custom
+
+  notes:
+    - Prices listed are as of June 2026; confirm current pricing at goflightlabs.com.
+    - Enterprise plan starts at $10,000/year with custom terms.
+    - No publicly listed overage fees; plan upgrades recommended before hitting monthly call limits.
+    - Operated by Zyla Labs; invoicing and payment processing may be through Zyla Labs platform.

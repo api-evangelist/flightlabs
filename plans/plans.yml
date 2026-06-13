@@ -1,0 +1,90 @@
+plans:
+  - name: Starter
+    description: Entry-level plan for developers and small projects needing real-time
+      flight data with a modest call budget.
+    url: https://www.goflightlabs.com
+    price: 249.99
+    currency: USD
+    period: monthly
+    api_calls: 4000
+    rate_limit_requests: 10
+    rate_limit_window: 10s
+    real_time_results: 100
+    trial: false
+
+  - name: Basic
+    description: Basic plan for growing applications requiring increased API call
+      volume and higher request throughput.
+    url: https://www.goflightlabs.com
+    price: 499.99
+    currency: USD
+    period: monthly
+    api_calls: 10000
+    rate_limit_requests: 15
+    rate_limit_window: 10s
+    real_time_results: 500
+    trial: false
+
+  - name: Pro
+    description: Professional plan for production applications needing high-volume
+      flight data access with unlimited real-time results.
+    url: https://www.goflightlabs.com
+    price: 1499.99
+    currency: USD
+    period: monthly
+    api_calls: 100000
+    rate_limit_requests: 20
+    rate_limit_window: 10s
+    real_time_results: unlimited
+    trial: false
+
+  - name: Premium
+    description: Premium plan for high-traffic applications and platforms requiring
+      large call volumes and fast throughput.
+    url: https://www.goflightlabs.com
+    price: 2499.99
+    currency: USD
+    period: monthly
+    api_calls: 500000
+    rate_limit_requests: 30
+    rate_limit_window: 10s
+    real_time_results: unlimited
+    trial: false
+
+  - name: Elite
+    description: Elite plan for enterprise-scale applications needing up to 1 million
+      API calls per month with maximum throughput.
+    url: https://www.goflightlabs.com
+    price: 4999.99
+    currency: USD
+    period: monthly
+    api_calls: 1000000
+    rate_limit_requests: 40
+    rate_limit_window: 10s
+    real_time_results: unlimited
+    trial: false
+
+  - name: Enterprise
+    description: Custom enterprise plan for organizations with mission-critical requirements,
+      negotiated pricing, dedicated support, and SLA guarantees.
+    url: https://www.goflightlabs.com
+    price: 10000.00
+    currency: USD
+    period: yearly
+    api_calls: custom
+    rate_limit_requests: custom
+    rate_limit_window: custom
+    real_time_results: unlimited
+    trial: false
+    notes: Starting at $10,000/year; custom terms negotiated directly with FlightLabs
+
+  - name: Free Trial
+    description: 7-day free trial providing access to all 16+ endpoints to evaluate
+      the API before purchasing a paid plan.
+    url: https://www.goflightlabs.com/register
+    price: 0
+    currency: USD
+    period: trial
+    trial_days: 7
+    api_calls: limited
+    notes: Access to all endpoints during 7-day trial period; credit card may be required

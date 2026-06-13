@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "data": [
+    {
+      "airportId": "3830",
+      "nameAirport": "John F. Kennedy International Airport",
+      "codeIataAirport": "JFK",
+      "codeIcaoAirport": "KJFK",
+      "codeFaaAirport": "JFK",
+      "latitudeAirport": 40.6398,
+      "longitudeAirport": -73.7789,
+      "uTCHours": -5,
+      "nameCountry": "United States",
+      "codeIso2Country": "US",
+      "codeIataCity": "NYC",
+      "timezone": "America/New_York",
+      "GMT": "-5",
+      "phone": "+1 718-244-4444",
+      "nameTranslations": "Kennedy,John-F-Kennedy",
+      "geoHash": "dr5x",
+      "sizeAirport": "large"
+    },
+    {
+      "airportId": "3484",
+      "nameAirport": "Los Angeles International Airport",
+      "codeIataAirport": "LAX",
+      "codeIcaoAirport": "KLAX",
+      "codeFaaAirport": "LAX",
+      "latitudeAirport": 33.9425,
+      "longitudeAirport": -118.408,
+      "uTCHours": -8,
+      "nameCountry": "United States",
+      "codeIso2Country": "US",
+      "codeIataCity": "LAX",
+      "timezone": "America/Los_Angeles",
+      "GMT": "-8",
+      "phone": "+1 855-463-5252",
+      "nameTranslations": "Los Angeles,LAX",
+      "geoHash": "9q5ct",
+      "sizeAirport": "large"
+    }
+  ]
+}

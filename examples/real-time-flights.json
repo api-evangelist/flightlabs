@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": [
+    {
+      "hex": "a1b2c3",
+      "reg_number": "N12345",
+      "flag": "US",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "alt": 35000,
+      "dir": 270.5,
+      "speed": 900,
+      "v_speed": 0,
+      "squawk": "1234",
+      "flight_number": "100",
+      "flight_icao": "AAL100",
+      "flight_iata": "AA100",
+      "dep_icao": "KJFK",
+      "dep_iata": "JFK",
+      "arr_icao": "KLAX",
+      "arr_iata": "LAX",
+      "airline_icao": "AAL",
+      "airline_iata": "AA",
+      "eta": 1720000000,
+      "status": "en-route",
+      "updated": 1719999000
+    },
+    {
+      "hex": "d4e5f6",
+      "reg_number": "N67890",
+      "flag": "US",
+      "lat": 33.9425,
+      "lng": -118.408,
+      "alt": 0,
+      "dir": 0,
+      "speed": 0,
+      "v_speed": 0,
+      "squawk": "2000",
+      "flight_number": "201",
+      "flight_icao": "UAL201",
+      "flight_iata": "UA201",
+      "dep_icao": "KLAX",
+      "dep_iata": "LAX",
+      "arr_icao": "KORD",
+      "arr_iata": "ORD",
+      "airline_icao": "UAL",
+      "airline_iata": "UA",
+      "eta": 1720010000,
+      "status": "scheduled",
+      "updated": 1719998000
+    }
+  ]
+}

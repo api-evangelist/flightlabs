@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/json-schema/airport.json",
+  "title": "AirportData",
+  "description": "Schema for airport reference data from the FlightLabs API",
+  "type": "object",
+  "properties": {
+    "airportId": {
+      "type": "string",
+      "description": "Internal airport identifier",
+      "example": "3830"
+    },
+    "nameAirport": {
+      "type": "string",
+      "description": "Full name of the airport",
+      "example": "John F. Kennedy International Airport"
+    },
+    "codeIataAirport": {
+      "type": "string",
+      "description": "Airport IATA code (3 letters)",
+      "pattern": "^[A-Z]{3}$",
+      "example": "JFK"
+    },
+    "codeIcaoAirport": {
+      "type": "string",
+      "description": "Airport ICAO code (4 characters)",
+      "pattern": "^[A-Z]{4}$",
+      "example": "KJFK"
+    },
+    "codeFaaAirport": {
+      "type": "string",
+      "description": "FAA airport code (US airports only)",
+      "example": "JFK"
+    },
+    "latitudeAirport": {
+      "type": "number",
+      "description": "Airport latitude in decimal degrees",
+      "minimum": -90,
+      "maximum": 90,
+      "example": 40.6398
+    },
+    "longitudeAirport": {
+      "type": "number",
+      "description": "Airport longitude in decimal degrees",
+      "minimum": -180,
+      "maximum": 180,
+      "example": -73.7789
+    },
+    "uTCHours": {
+      "type": "number",
+      "description": "UTC offset in hours",
+      "example": -5
+    },
+    "nameCountry": {
+      "type": "string",
+      "description": "Name of the country where the airport is located",
+      "example": "United States"
+    },
+    "codeIso2Country": {
+      "type": "string",
+      "description": "Country ISO 2-letter code",
+      "pattern": "^[A-Z]{2}$",
+      "example": "US"
+    },
+    "codeIataCity": {
+      "type": "string",
+      "description": "City IATA code",
+      "example": "NYC"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone identifier",
+      "example": "America/New_York"
+    },
+    "GMT": {
+      "type": "string",
+      "description": "GMT offset string",
+      "example": "-5"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Airport contact phone number",
+      "example": "+1 718-244-4444"
+    },
+    "nameTranslations": {
+      "type": "string",
+      "description": "Comma-separated list of name translations/aliases",
+      "example": "Kennedy,John-F-Kennedy"
+    },
+    "geoHash": {
+      "type": "string",
+      "description": "Geohash of airport location",
+      "example": "dr5x"
+    },
+    "sizeAirport": {
+      "type": "string",
+      "description": "Size classification of the airport",
+      "enum": ["large", "medium", "small"],
+      "example": "large"
+    }
+  },
+  "additionalProperties": true
+}

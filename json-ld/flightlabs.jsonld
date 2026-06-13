@@ -1,0 +1,150 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "fl": "https://www.goflightlabs.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Flight": "fl:Flight",
+    "Airport": "fl:Airport",
+    "Airline": "fl:Airline",
+    "Route": "fl:Route",
+    "hex": "fl:hex",
+    "reg_number": "fl:reg_number",
+    "flight_icao": "fl:flight_icao",
+    "flight_iata": "fl:flight_iata",
+    "flight_number": "fl:flight_number",
+    "dep_iata": "fl:dep_iata",
+    "dep_icao": "fl:dep_icao",
+    "arr_iata": "fl:arr_iata",
+    "arr_icao": "fl:arr_icao",
+    "airline_iata": "fl:airline_iata",
+    "airline_icao": "fl:airline_icao",
+    "squawk": "fl:squawk",
+    "codeIataAirport": "fl:codeIataAirport",
+    "codeIcaoAirport": "fl:codeIcaoAirport",
+    "codeIataAirline": "fl:codeIataAirline",
+    "codeIcaoAirline": "fl:codeIcaoAirline",
+    "callsign": "fl:callsign",
+    "sizeAirline": "fl:sizeAirline",
+    "ageFleet": "fl:ageFleet",
+    "codeHub": "fl:codeHub",
+    "sizeAirport": "fl:sizeAirport",
+    "geoHash": "fl:geoHash",
+    "access_key": "fl:access_key",
+    "updated": {
+      "@id": "fl:updated",
+      "@type": "xsd:dateTime"
+    },
+    "eta": {
+      "@id": "fl:eta",
+      "@type": "xsd:dateTime"
+    },
+    "status": "fl:status",
+    "flightStatus": {
+      "@id": "fl:flightStatus",
+      "@type": "@vocab"
+    },
+    "iataCode": "fl:iataCode",
+    "icaoCode": "fl:icaoCode",
+    "latitude": "geo:lat",
+    "longitude": "geo:long",
+    "altitude": "fl:altitude",
+    "speed": "fl:speed",
+    "heading": "fl:heading",
+    "country": {
+      "@id": "addressCountry",
+      "@type": "Country"
+    },
+    "timezone": "fl:timezone",
+    "nameAirport": "name",
+    "nameAirline": "name",
+    "websiteAirline": "url",
+    "founding": {
+      "@id": "foundingDate",
+      "@type": "xsd:gYear"
+    },
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#"
+  },
+  "@graph": [
+    {
+      "@id": "https://www.goflightlabs.com",
+      "@type": "WebAPI",
+      "name": "FlightLabs API",
+      "description": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally.",
+      "url": "https://www.goflightlabs.com",
+      "documentation": "https://www.goflightlabs.com/dashboard#api-documentation",
+      "provider": {
+        "@type": "Organization",
+        "name": "Zyla Labs",
+        "url": "https://zylalabs.com",
+        "email": "hello@goflightlabs.com"
+      },
+      "potentialAction": [
+        {
+          "@type": "Action",
+          "name": "getRealTimeFlights",
+          "target": "https://app.goflightlabs.com/flights"
+        },
+        {
+          "@type": "Action",
+          "name": "getHistoricalFlights",
+          "target": "https://app.goflightlabs.com/historical-flights"
+        },
+        {
+          "@type": "Action",
+          "name": "getFlightSchedules",
+          "target": "https://app.goflightlabs.com/schedules"
+        },
+        {
+          "@type": "Action",
+          "name": "getFutureFlights",
+          "target": "https://app.goflightlabs.com/future-flights"
+        },
+        {
+          "@type": "Action",
+          "name": "getFlightDelay",
+          "target": "https://app.goflightlabs.com/flight-delay"
+        },
+        {
+          "@type": "Action",
+          "name": "getFlightsByAirline",
+          "target": "https://app.goflightlabs.com/flights-by-airline"
+        },
+        {
+          "@type": "Action",
+          "name": "getFlightPrices",
+          "target": "https://app.goflightlabs.com/flight-prices"
+        },
+        {
+          "@type": "Action",
+          "name": "getAirports",
+          "target": "https://app.goflightlabs.com/airports"
+        },
+        {
+          "@type": "Action",
+          "name": "getAirlines",
+          "target": "https://app.goflightlabs.com/airlines"
+        },
+        {
+          "@type": "Action",
+          "name": "getAirlineRoutes",
+          "target": "https://app.goflightlabs.com/routes"
+        },
+        {
+          "@type": "Action",
+          "name": "getCountries",
+          "target": "https://app.goflightlabs.com/countries"
+        },
+        {
+          "@type": "Action",
+          "name": "getCities",
+          "target": "https://app.goflightlabs.com/cities"
+        },
+        {
+          "@type": "Action",
+          "name": "getAircraftTypes",
+          "target": "https://app.goflightlabs.com/aircraft_types"
+        }
+      ]
+    }
+  ]
+}

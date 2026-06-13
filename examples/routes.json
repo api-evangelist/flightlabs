@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "data": [
+    {
+      "airline_iata": "AA",
+      "airline_icao": "AAL",
+      "flight_iata": "AA100",
+      "flight_icao": "AAL100",
+      "flight_number": "100",
+      "dep_iata": "JFK",
+      "dep_icao": "KJFK",
+      "dep_time": "10:00",
+      "dep_time_utc": "15:00",
+      "dep_terminal": "8",
+      "arr_iata": "LAX",
+      "arr_icao": "KLAX",
+      "arr_time": "13:30",
+      "arr_time_utc": "21:30",
+      "arr_terminal": "4",
+      "duration": 330,
+      "aircraft_icao": "B77W",
+      "days": ["mon", "wed", "fri", "sun"]
+    },
+    {
+      "airline_iata": "UA",
+      "airline_icao": "UAL",
+      "flight_iata": "UA201",
+      "flight_icao": "UAL201",
+      "flight_number": "201",
+      "dep_iata": "LAX",
+      "dep_icao": "KLAX",
+      "dep_time": "08:00",
+      "dep_time_utc": "16:00",
+      "dep_terminal": "7",
+      "arr_iata": "ORD",
+      "arr_icao": "KORD",
+      "arr_time": "14:15",
+      "arr_time_utc": "20:15",
+      "arr_terminal": "1",
+      "duration": 255,
+      "aircraft_icao": "B738",
+      "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+    }
+  ]
+}

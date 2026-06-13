@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/json-schema/flight.json",
+  "title": "FlightData",
+  "description": "Schema for a real-time or historical flight data record from the FlightLabs API",
+  "type": "object",
+  "properties": {
+    "hex": {
+      "type": "string",
+      "description": "ICAO24 hex identifier for the aircraft",
+      "example": "a1b2c3"
+    },
+    "reg_number": {
+      "type": "string",
+      "description": "Aircraft registration number",
+      "example": "N12345"
+    },
+    "flag": {
+      "type": "string",
+      "description": "Country flag code (ISO 2-letter)",
+      "example": "US"
+    },
+    "lat": {
+      "type": "number",
+      "description": "Aircraft latitude in decimal degrees",
+      "minimum": -90,
+      "maximum": 90,
+      "example": 40.7128
+    },
+    "lng": {
+      "type": "number",
+      "description": "Aircraft longitude in decimal degrees",
+      "minimum": -180,
+      "maximum": 180,
+      "example": -74.006
+    },
+    "alt": {
+      "type": "number",
+      "description": "Aircraft altitude in feet",
+      "example": 35000
+    },
+    "dir": {
+      "type": "number",
+      "description": "Aircraft heading in degrees (0-360)",
+      "minimum": 0,
+      "maximum": 360,
+      "example": 270.5
+    },
+    "speed": {
+      "type": "number",
+      "description": "Aircraft speed in km/h",
+      "example": 900
+    },
+    "v_speed": {
+      "type": "number",
+      "description": "Vertical speed in ft/min",
+      "example": 0
+    },
+    "squawk": {
+      "type": "string",
+      "description": "Transponder squawk code",
+      "pattern": "^[0-7]{4}$",
+      "example": "1234"
+    },
+    "flight_number": {
+      "type": "string",
+      "description": "Flight number (numeric portion)",
+      "example": "100"
+    },
+    "flight_icao": {
+      "type": "string",
+      "description": "Flight ICAO code (3-letter airline ICAO + flight number)",
+      "example": "AAL100"
+    },
+    "flight_iata": {
+      "type": "string",
+      "description": "Flight IATA code (2-letter airline IATA + flight number)",
+      "example": "AA100"
+    },
+    "dep_icao": {
+      "type": "string",
+      "description": "Departure airport ICAO code",
+      "example": "KJFK"
+    },
+    "dep_iata": {
+      "type": "string",
+      "description": "Departure airport IATA code",
+      "example": "JFK"
+    },
+    "arr_icao": {
+      "type": "string",
+      "description": "Arrival airport ICAO code",
+      "example": "KLAX"
+    },
+    "arr_iata": {
+      "type": "string",
+      "description": "Arrival airport IATA code",
+      "example": "LAX"
+    },
+    "airline_icao": {
+      "type": "string",
+      "description": "Operating airline ICAO code",
+      "example": "AAL"
+    },
+    "airline_iata": {
+      "type": "string",
+      "description": "Operating airline IATA code",
+      "example": "AA"
+    },
+    "eta": {
+      "type": "integer",
+      "description": "Estimated time of arrival as Unix timestamp",
+      "example": 1720000000
+    },
+    "status": {
+      "type": "string",
+      "description": "Current flight status",
+      "enum": ["en-route", "landed", "scheduled", "cancelled", "diverted"],
+      "example": "en-route"
+    },
+    "updated": {
+      "type": "integer",
+      "description": "Last update time as Unix timestamp",
+      "example": 1719999000
+    }
+  },
+  "additionalProperties": true
+}

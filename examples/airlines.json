@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": [
+    {
+      "airlineId": "24",
+      "nameAirline": "American Airlines",
+      "codeIataAirline": "AA",
+      "iataPrefixAccounting": "001",
+      "codeIcaoAirline": "AAL",
+      "callsign": "AMERICAN",
+      "type": "scheduled",
+      "statusAirline": "active",
+      "sizeAirline": 956,
+      "ageFleet": 11.5,
+      "founding": 1930,
+      "codeHub": "DFW",
+      "nameCountry": "United States",
+      "codeIso2Country": "US",
+      "websiteAirline": "https://www.aa.com"
+    },
+    {
+      "airlineId": "5209",
+      "nameAirline": "United Airlines",
+      "codeIataAirline": "UA",
+      "iataPrefixAccounting": "016",
+      "codeIcaoAirline": "UAL",
+      "callsign": "UNITED",
+      "type": "scheduled",
+      "statusAirline": "active",
+      "sizeAirline": 850,
+      "ageFleet": 16.2,
+      "founding": 1926,
+      "codeHub": "ORD",
+      "nameCountry": "United States",
+      "codeIso2Country": "US",
+      "websiteAirline": "https://www.united.com"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/json-schema/airline.json",
+  "title": "AirlineData",
+  "description": "Schema for airline reference data from the FlightLabs API",
+  "type": "object",
+  "properties": {
+    "airlineId": {
+      "type": "string",
+      "description": "Internal airline identifier",
+      "example": "24"
+    },
+    "nameAirline": {
+      "type": "string",
+      "description": "Full name of the airline",
+      "example": "American Airlines"
+    },
+    "codeIataAirline": {
+      "type": "string",
+      "description": "Airline IATA code (2 letters)",
+      "pattern": "^[A-Z0-9]{2}$",
+      "example": "AA"
+    },
+    "iataPrefixAccounting": {
+      "type": "string",
+      "description": "IATA numeric prefix for accounting",
+      "example": "001"
+    },
+    "codeIcaoAirline": {
+      "type": "string",
+      "description": "Airline ICAO code (3 letters)",
+      "pattern": "^[A-Z]{3}$",
+      "example": "AAL"
+    },
+    "callsign": {
+      "type": "string",
+      "description": "Radio telephony callsign",
+      "example": "AMERICAN"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of airline operation",
+      "enum": ["scheduled", "charter", "cargo", "private"],
+      "example": "scheduled"
+    },
+    "statusAirline": {
+      "type": "string",
+      "description": "Operational status of the airline",
+      "enum": ["active", "inactive"],
+      "example": "active"
+    },
+    "sizeAirline": {
+      "type": "integer",
+      "description": "Fleet size (number of aircraft)",
+      "example": 956
+    },
+    "ageFleet": {
+      "type": "number",
+      "description": "Average fleet age in years",
+      "example": 11.5
+    },
+    "founding": {
+      "type": "integer",
+      "description": "Year the airline was founded",
+      "example": 1930
+    },
+    "codeHub": {
+      "type": "string",
+      "description": "Primary hub airport IATA code",
+      "example": "DFW"
+    },
+    "nameCountry": {
+      "type": "string",
+      "description": "Country name where airline is based",
+      "example": "United States"
+    },
+    "codeIso2Country": {
+      "type": "string",
+      "description": "Country ISO 2-letter code",
+      "pattern": "^[A-Z]{2}$",
+      "example": "US"
+    },
+    "websiteAirline": {
+      "type": "string",
+      "format": "uri",
+      "description": "Airline website URL",
+      "example": "https://www.aa.com"
+    }
+  },
+  "additionalProperties": true
+}

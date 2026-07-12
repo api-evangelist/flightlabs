@@ -62,3 +62,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
     url: https://apievangelist.com
+common:
+- type: DomainSecurity
+  url: security/flightlabs-domain-security.yml
+- type: Authentication
+  url: authentication/flightlabs-authentication.yml

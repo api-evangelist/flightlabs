@@ -63,6 +63,8 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+- type: AgenticAccess
+  url: agentic-access/flightlabs-agentic-access.yml
 - type: DomainSecurity
   url: security/flightlabs-domain-security.yml
 - type: Authentication

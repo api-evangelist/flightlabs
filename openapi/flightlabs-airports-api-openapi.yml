@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: FlightLabs Aircraft Airports API
+  description: 'Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
+
+    '
+  version: '1.0'
+  contact:
+    name: FlightLabs Support
+    email: hello@goflightlabs.com
+    url: https://www.goflightlabs.com
+  termsOfService: https://www.goflightlabs.com/terms
+  license:
+    name: Commercial
+    url: https://www.goflightlabs.com/pricing
+servers:
+- url: https://app.goflightlabs.com
+  description: FlightLabs Production API
+security:
+- AccessKey: []
+tags:
+- name: Airports
+  description: Airport reference data endpoints
+paths:
+  /airports:
+    get:
+      operationId: getAirports
+      summary: Airports by Filter
+      description: 'Retrieve airport information filtered by IATA code, country, or other criteria. Returns comprehensive airport details including codes, coordinates, timezone, runway count, and contact information.
+
+        '
+      tags:
+      - Airports
+      parameters:
+      - $ref: '#/components/parameters/AccessKey'
+      - $ref: '#/components/parameters/Limit'
+      - name: codeIataAirport
+        in: query
+        description: Airport IATA code (e.g. JFK)
+        required: false
+        schema:
+          type: string
+          example: JFK
+      - name: codeIso2Country
+        in: query
+        description: Country ISO 2-letter code to filter airports
+        required: false
+        schema:
+          type: string
+          example: US
+      responses:
+        '200':
+          description: Successful response with airport data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 101
+            type:
+              type: string
+              example: invalid_access_key
+            info:
+              type: string
+              example: You have not supplied a valid API Access Key.
+    AirportsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportData'
+    AirportData:
+      type: object
+      description: Airport reference data
+      properties:
+        airportId:
+          type: string
+          example: '3830'
+        nameAirport:
+          type: string
+          example: John F. Kennedy International Airport
+        codeIataAirport:
+          type: string
+          example: JFK
+        codeIcaoAirport:
+          type: string
+          example: KJFK
+        codeFaaAirport:
+          type: string
+          example: JFK
+        latitudeAirport:
+          type: number
+          format: float
+          example: 40.6398
+        longitudeAirport:
+          type: number
+          format: float
+          example: -73.7789
+        uTCHours:
+          type: number
+          format: float
+          example: -5
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        codeIataCity:
+          type: string
+          example: NYC
+        timezone:
+          type: string
+          example: America/New_York
+        GMT:
+          type: string
+          example: '-5'
+        phone:
+          type: string
+          example: +1 718-244-4444
+        nameTranslations:
+          type: string
+          example: Kennedy,John-F-Kennedy
+        geoHash:
+          type: string
+          example: dr5x
+        sizeAirport:
+          type: string
+          enum:
+          - large
+          - medium
+          - small
+          example: large
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+  securitySchemes:
+    AccessKey:
+      type: apiKey
+      in: query
+      name: access_key
+      description: API key obtained from your FlightLabs dashboard
+externalDocs:
+  description: FlightLabs API Documentation
+  url: https://www.goflightlabs.com/dashboard#api-documentation

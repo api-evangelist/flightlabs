@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: FlightLabs Aircraft Airlines API
+  description: 'Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
+
+    '
+  version: '1.0'
+  contact:
+    name: FlightLabs Support
+    email: hello@goflightlabs.com
+    url: https://www.goflightlabs.com
+  termsOfService: https://www.goflightlabs.com/terms
+  license:
+    name: Commercial
+    url: https://www.goflightlabs.com/pricing
+servers:
+- url: https://app.goflightlabs.com
+  description: FlightLabs Production API
+security:
+- AccessKey: []
+tags:
+- name: Airlines
+  description: Airline reference data endpoints
+paths:
+  /airlines:
+    get:
+      operationId: getAirlines
+      summary: Retrieve Airlines
+      description: 'Retrieve airline directory with optional filtering by IATA code or country. Returns airline details including codes, callsign, fleet statistics, safety certifications, and contact information.
+
+        '
+      tags:
+      - Airlines
+      parameters:
+      - $ref: '#/components/parameters/AccessKey'
+      - $ref: '#/components/parameters/Limit'
+      - name: codeIataAirline
+        in: query
+        description: Airline IATA code (e.g. AA)
+        required: false
+        schema:
+          type: string
+          example: AA
+      - name: codeIso2Country
+        in: query
+        description: Country ISO code to filter airlines
+        required: false
+        schema:
+          type: string
+          example: US
+      responses:
+        '200':
+          description: Successful response with airline data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirlinesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    AirlineData:
+      type: object
+      description: Airline reference data
+      properties:
+        airlineId:
+          type: string
+          example: '24'
+        nameAirline:
+          type: string
+          example: American Airlines
+        codeIataAirline:
+          type: string
+          example: AA
+        iataPrefixAccounting:
+          type: string
+          example: '001'
+        codeIcaoAirline:
+          type: string
+          example: AAL
+        callsign:
+          type: string
+          example: AMERICAN
+        type:
+          type: string
+          enum:
+          - scheduled
+          - charter
+          - cargo
+          - private
+          example: scheduled
+        statusAirline:
+          type: string
+          enum:
+          - active
+          - inactive
+          example: active
+        sizeAirline:
+          type: integer
+          description: Number of aircraft in fleet
+          example: 956
+        ageFleet:
+          type: number
+          format: float
+          description: Average age of fleet in years
+          example: 11.5
+        founding:
+          type: integer
+          description: Year airline was founded
+          example: 1930
+        codeHub:
+          type: string
+          description: Primary hub airport IATA code
+          example: DFW
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        websiteAirline:
+          type: string
+          format: uri
+          example: https://www.aa.com
+    AirlinesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirlineData'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 101
+            type:
+              type: string
+              example: invalid_access_key
+            info:
+              type: string
+              example: You have not supplied a valid API Access Key.
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    AccessKey:
+      type: apiKey
+      in: query
+      name: access_key
+      description: API key obtained from your FlightLabs dashboard
+externalDocs:
+  description: FlightLabs API Documentation
+  url: https://www.goflightlabs.com/dashboard#api-documentation

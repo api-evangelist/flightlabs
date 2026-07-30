@@ -4,7 +4,20 @@ description: Aviation data REST API providing real-time and historical flight in
   worldwide airline coverage. Operated by Zyla Labs, FlightLabs offers 16+ endpoints
   covering live flights, flight delays, future predictions, airline routes, and flight
   pricing.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/flightlabs.png
 url: https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/apis.yml
 version: "0.19"
 created: "2026-06-13"
@@ -19,45 +32,209 @@ tags:
   - Travel
   - Real-Time Data
 apis:
-  - name: FlightLabs API
-    description: Real-time and historical flight tracker and status API providing
-      live data for flights, airports, schedules, timetables, IATA codes, airline
-      routes, and flight pricing globally.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.goflightlabs.com
-    baseURL: https://app.goflightlabs.com
-    tags:
-      - Aviation
-      - Flights
-      - Airlines
-      - Airports
-      - Flight Tracking
-      - Real-Time
-      - Historical
-      - Travel
-    properties:
-      - type: Documentation
-        url: https://www.goflightlabs.com/dashboard#api-documentation
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/openapi.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
-      - type: Signup
-        url: https://www.goflightlabs.com/register
-      - type: Login
-        url: https://www.goflightlabs.com/login
-      - type: Blog
-        url: https://www.goflightlabs.com/blog
-      - type: PythonSDK
-        url: https://pypi.org/project/real-time-flights-api/
-    contact:
-      - FN: FlightLabs Support
-        email: hello@goflightlabs.com
-        url: https://www.goflightlabs.com
+- aid: flightlabs:flightlabs-aircraft-api
+  name: FlightLabs Aircraft API
+  description: Aircraft and aircraft type reference data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Aircraft
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-aircraft-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-airlines-api
+  name: FlightLabs Airlines API
+  description: Airline reference data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Airlines
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-airlines-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-airports-api
+  name: FlightLabs Airports API
+  description: Airport reference data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Airports
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-airports-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-flights-api
+  name: FlightLabs Flights API
+  description: Real-time and historical flight data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Flights
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-flights-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-geography-api
+  name: FlightLabs Geography API
+  description: Countries and cities reference data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Geography
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-geography-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-pricing-api
+  name: FlightLabs Pricing API
+  description: Flight pricing and fare data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
+- aid: flightlabs:flightlabs-routes-api
+  name: FlightLabs Routes API
+  description: Airline route data endpoints
+  humanURL: https://www.goflightlabs.com
+  baseURL: https://app.goflightlabs.com
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/flightlabs-routes-api-openapi.yml
+  - type: Documentation
+    url: https://www.goflightlabs.com/dashboard#api-documentation
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/flightlabs/refs/heads/main/finops/finops.yml
+  - type: Signup
+    url: https://www.goflightlabs.com/register
+  - type: Login
+    url: https://www.goflightlabs.com/login
+  - type: Blog
+    url: https://www.goflightlabs.com/blog
+  - type: PythonSDK
+    url: https://pypi.org/project/real-time-flights-api/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

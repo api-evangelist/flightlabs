@@ -1,0 +1,1778 @@
+openapi: 3.0.3
+info:
+  title: FlightLabs API
+  description: >
+    Real-time and historical flight tracker and status API providing live data
+    for flights, airports, schedules, timetables, IATA codes, airline routes,
+    and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+
+    endpoints covering live flights, flight delays, future predictions, airline
+    routes, and flight pricing.
+  version: "1.0"
+  contact:
+    name: FlightLabs Support
+    email: hello@goflightlabs.com
+    url: https://www.goflightlabs.com
+  termsOfService: https://www.goflightlabs.com/terms
+  license:
+    name: Commercial
+    url: https://www.goflightlabs.com/pricing
+externalDocs:
+  description: FlightLabs API Documentation
+  url: https://www.goflightlabs.com/dashboard#api-documentation
+servers:
+  - url: https://app.goflightlabs.com
+    description: FlightLabs Production API
+security:
+  - AccessKey: []
+tags:
+  - name: Flights
+    description: Real-time and historical flight data endpoints
+  - name: Airports
+    description: Airport reference data endpoints
+  - name: Airlines
+    description: Airline reference data endpoints
+  - name: Routes
+    description: Airline route data endpoints
+  - name: Geography
+    description: Countries and cities reference data endpoints
+  - name: Aircraft
+    description: Aircraft and aircraft type reference data endpoints
+  - name: Pricing
+    description: Flight pricing and fare data endpoints
+paths:
+  /flights:
+    get:
+      operationId: getRealTimeFlights
+      summary: Real-Time Flights
+      description: >
+        Retrieve real-time live flight information for active flights globally.
+        Returns live aircraft positions, flight status, departure/arrival
+        information, and more.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: flightIata
+          in: query
+          description: Filter by flight IATA code (e.g. AA100)
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: flightIcao
+          in: query
+          description: Filter by flight ICAO code (e.g. AAL100)
+          required: false
+          schema:
+            type: string
+            example: AAL100
+        - name: flightNum
+          in: query
+          description: Filter by flight number only (e.g. 100)
+          required: false
+          schema:
+            type: string
+            example: "100"
+        - name: airlineIata
+          in: query
+          description: Filter by airline IATA code (e.g. AA)
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: airlineIcao
+          in: query
+          description: Filter by airline ICAO code (e.g. AAL)
+          required: false
+          schema:
+            type: string
+            example: AAL
+        - name: depIata
+          in: query
+          description: Filter by departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: depIcao
+          in: query
+          description: Filter by departure airport ICAO code
+          required: false
+          schema:
+            type: string
+            example: KJFK
+        - name: arrIata
+          in: query
+          description: Filter by arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: arrIcao
+          in: query
+          description: Filter by arrival airport ICAO code
+          required: false
+          schema:
+            type: string
+            example: KLAX
+        - name: regNum
+          in: query
+          description: Filter by aircraft registration number
+          required: false
+          schema:
+            type: string
+            example: N12345
+        - name: hex
+          in: query
+          description: Filter by aircraft ICAO24 hex code
+          required: false
+          schema:
+            type: string
+            example: a1b2c3
+      responses:
+        "200":
+          description: Successful response with real-time flight data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flights-callsign:
+    get:
+      operationId: getFlightsByCallsign
+      summary: Flights with CallSign
+      description: >
+        Look up active flights by callsign or airline ICAO code. Returns
+        real-time flight status for the matched aircraft.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: callsign
+          in: query
+          description: Aircraft callsign to search for
+          required: false
+          schema:
+            type: string
+            example: AAL100
+        - name: airlineIcao
+          in: query
+          description: Airline ICAO code to filter results
+          required: false
+          schema:
+            type: string
+            example: AAL
+      responses:
+        "200":
+          description: Successful response with flight data by callsign
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /historical-flights:
+    get:
+      operationId: getHistoricalFlights
+      summary: Historical Flights
+      description: >
+        Retrieve historical flight data for past departures and arrivals within
+        a specified date range.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: flightIata
+          in: query
+          description: Flight IATA code
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: flightIcao
+          in: query
+          description: Flight ICAO code
+          required: false
+          schema:
+            type: string
+            example: AAL100
+        - name: airlineIata
+          in: query
+          description: Airline IATA code
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: depIata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: arrIata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: dateFrom
+          in: query
+          description: Start date for historical query (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-01-01"
+        - name: dateTo
+          in: query
+          description: End date for historical query (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-01-31"
+      responses:
+        "200":
+          description: Successful response with historical flight data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /schedules:
+    get:
+      operationId: getFlightSchedules
+      summary: Flights Schedules
+      description: >
+        Retrieve current and upcoming scheduled flights for airports, including
+        departures and arrivals with times, terminals, and status.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: depIata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: arrIata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: airlineIata
+          in: query
+          description: Airline IATA code
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: flightIata
+          in: query
+          description: Flight IATA code
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: type
+          in: query
+          description: Schedule type - departure or arrival
+          required: false
+          schema:
+            type: string
+            enum:
+              - departure
+              - arrival
+      responses:
+        "200":
+          description: Successful response with schedule data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /future-flights:
+    get:
+      operationId: getFutureFlights
+      summary: Future Flights Prediction
+      description: >
+        Retrieve predicted flight schedules for future dates (7+ days ahead).
+        Useful for planning and forecasting.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: depIata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: arrIata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: airlineIata
+          in: query
+          description: Airline IATA code
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: date
+          in: query
+          description: Future date (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-07-01"
+      responses:
+        "200":
+          description: Successful response with future flight predictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flight-delay:
+    get:
+      operationId: getFlightDelay
+      summary: Flight Delay
+      description: >
+        Retrieve flights that are delayed beyond specified thresholds.
+        Returns scheduled vs actual times for delayed departures and arrivals.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: type
+          in: query
+          description: Delay type - departure or arrival
+          required: false
+          schema:
+            type: string
+            enum:
+              - departure
+              - arrival
+        - name: depIata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: arrIata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: airlineIata
+          in: query
+          description: Airline IATA code
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: minDelay
+          in: query
+          description: Minimum delay in minutes to filter results
+          required: false
+          schema:
+            type: integer
+            example: 30
+      responses:
+        "200":
+          description: Successful response with delay data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flights-by-airline:
+    get:
+      operationId: getFlightsByAirline
+      summary: Flights By Airline
+      description: >
+        Filter the live flight feed by airline operator to retrieve all active
+        flights operated by a specific airline.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: airlineIata
+          in: query
+          description: Airline IATA code (required)
+          required: true
+          schema:
+            type: string
+            example: AA
+        - name: airlineIcao
+          in: query
+          description: Airline ICAO code
+          required: false
+          schema:
+            type: string
+            example: AAL
+      responses:
+        "200":
+          description: Successful response with flights by airline
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flight-data-by-date:
+    get:
+      operationId: getFlightDataByDate
+      summary: Flight Data by Date
+      description: >
+        Retrieve detailed flight records for a specific flight number across a
+        date range.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: flightIata
+          in: query
+          description: Flight IATA code (e.g. AA100)
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: dateFrom
+          in: query
+          description: Start date (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-01-01"
+        - name: dateTo
+          in: query
+          description: End date (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-01-31"
+      responses:
+        "200":
+          description: Successful response with flight data by date
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flight-info:
+    get:
+      operationId: getFlightInfoByNumber
+      summary: Flight Info By Flight Number
+      description: >
+        Retrieve detailed information for a specific flight number, including
+        status, schedule, aircraft, and route details.
+      tags:
+        - Flights
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - name: flightIata
+          in: query
+          description: Flight IATA code (e.g. AA100)
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: flightIcao
+          in: query
+          description: Flight ICAO code (e.g. AAL100)
+          required: false
+          schema:
+            type: string
+            example: AAL100
+        - name: flightNum
+          in: query
+          description: Flight number only (e.g. 100)
+          required: false
+          schema:
+            type: string
+            example: "100"
+      responses:
+        "200":
+          description: Successful response with flight info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightInfoResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /flight-prices:
+    get:
+      operationId: getFlightPrices
+      summary: Flight Prices
+      description: >
+        Search fares and pricing between airports on specified travel dates.
+        Returns price estimates and availability information.
+      tags:
+        - Pricing
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: depIata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: arrIata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: date
+          in: query
+          description: Travel date (YYYY-MM-DD)
+          required: false
+          schema:
+            type: string
+            format: date
+            example: "2026-07-01"
+        - name: currency
+          in: query
+          description: Currency code for prices (ISO 4217)
+          required: false
+          schema:
+            type: string
+            example: USD
+      responses:
+        "200":
+          description: Successful response with flight prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlightPricesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /airports:
+    get:
+      operationId: getAirports
+      summary: Airports by Filter
+      description: >
+        Retrieve airport information filtered by IATA code, country, or other
+        criteria. Returns comprehensive airport details including codes,
+        coordinates, timezone, runway count, and contact information.
+      tags:
+        - Airports
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: codeIataAirport
+          in: query
+          description: Airport IATA code (e.g. JFK)
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: codeIso2Country
+          in: query
+          description: Country ISO 2-letter code to filter airports
+          required: false
+          schema:
+            type: string
+            example: US
+      responses:
+        "200":
+          description: Successful response with airport data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /countries:
+    get:
+      operationId: getCountries
+      summary: Retrieve Countries
+      description: >
+        Retrieve country reference data including codes, names, population,
+        continent, and currency information.
+      tags:
+        - Geography
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: codeIso2Country
+          in: query
+          description: Country ISO 2-letter code
+          required: false
+          schema:
+            type: string
+            example: US
+        - name: nameCountry
+          in: query
+          description: Country name filter
+          required: false
+          schema:
+            type: string
+            example: United States
+      responses:
+        "200":
+          description: Successful response with country data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountriesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /airlines:
+    get:
+      operationId: getAirlines
+      summary: Retrieve Airlines
+      description: >
+        Retrieve airline directory with optional filtering by IATA code or
+        country. Returns airline details including codes, callsign, fleet
+        statistics, safety certifications, and contact information.
+      tags:
+        - Airlines
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: codeIataAirline
+          in: query
+          description: Airline IATA code (e.g. AA)
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: codeIso2Country
+          in: query
+          description: Country ISO code to filter airlines
+          required: false
+          schema:
+            type: string
+            example: US
+      responses:
+        "200":
+          description: Successful response with airline data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirlinesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /routes:
+    get:
+      operationId: getAirlineRoutes
+      summary: Airlines Routes
+      description: >
+        Retrieve airline route data updated every 24 hours. Returns flight
+        schedule information including departure/arrival details, duration,
+        aircraft type, and operational days.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: dep_iata
+          in: query
+          description: Departure airport IATA code
+          required: false
+          schema:
+            type: string
+            example: JFK
+        - name: dep_icao
+          in: query
+          description: Departure airport ICAO code
+          required: false
+          schema:
+            type: string
+            example: KJFK
+        - name: arr_iata
+          in: query
+          description: Arrival airport IATA code
+          required: false
+          schema:
+            type: string
+            example: LAX
+        - name: arr_icao
+          in: query
+          description: Arrival airport ICAO code
+          required: false
+          schema:
+            type: string
+            example: KLAX
+        - name: airline_iata
+          in: query
+          description: Airline IATA code
+          required: false
+          schema:
+            type: string
+            example: AA
+        - name: airline_icao
+          in: query
+          description: Airline ICAO code
+          required: false
+          schema:
+            type: string
+            example: AAL
+        - name: flight_iata
+          in: query
+          description: Flight IATA code
+          required: false
+          schema:
+            type: string
+            example: AA100
+        - name: flight_icao
+          in: query
+          description: Flight ICAO code
+          required: false
+          schema:
+            type: string
+            example: AAL100
+        - name: flight_number
+          in: query
+          description: Flight number only
+          required: false
+          schema:
+            type: string
+            example: "100"
+        - name: _fields
+          in: query
+          description: Comma-separated list of fields to return
+          required: false
+          schema:
+            type: string
+            example: "dep_iata,arr_iata,airline_iata"
+        - name: offset
+          in: query
+          description: Pagination offset
+          required: false
+          schema:
+            type: integer
+            example: 0
+      responses:
+        "200":
+          description: Successful response with route data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /cities:
+    get:
+      operationId: getCities
+      summary: Cities By IATA Code
+      description: >
+        Retrieve city reference data including IATA codes, coordinates, timezone,
+        population, and multilingual names.
+      tags:
+        - Geography
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - $ref: '#/components/parameters/Limit'
+        - name: codeIataCity
+          in: query
+          description: City IATA code
+          required: false
+          schema:
+            type: string
+            example: NYC
+        - name: codeIso2Country
+          in: query
+          description: Country ISO 2-letter code
+          required: false
+          schema:
+            type: string
+            example: US
+      responses:
+        "200":
+          description: Successful response with city data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /aircraft_types:
+    get:
+      operationId: getAircraftTypes
+      summary: Aircraft Types
+      description: >
+        Retrieve aircraft type reference data including IATA codes and type names.
+      tags:
+        - Aircraft
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - name: codeIataAircraft
+          in: query
+          description: Aircraft IATA code (e.g. B737)
+          required: false
+          schema:
+            type: string
+            example: B737
+      responses:
+        "200":
+          description: Successful response with aircraft type data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AircraftTypesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /airplanes:
+    get:
+      operationId: getAirplanes
+      summary: Airplanes
+      description: >
+        Retrieve airplane (aircraft) reference data by registration number, hex
+        ICAO code, or airline. Returns registration details, model, type codes,
+        construction/delivery dates, and engine specifications.
+        Note - This endpoint is deprecated and may be removed in a future version.
+      tags:
+        - Aircraft
+      deprecated: true
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - name: numberRegistration
+          in: query
+          description: Aircraft registration number
+          required: false
+          schema:
+            type: string
+            example: N12345
+        - name: hexIcaoAirplane
+          in: query
+          description: Hex ICAO code for the aircraft
+          required: false
+          schema:
+            type: string
+            example: a1b2c3
+        - name: codeIataAirline
+          in: query
+          description: Airline IATA code to filter aircraft
+          required: false
+          schema:
+            type: string
+            example: AA
+      responses:
+        "200":
+          description: Successful response with airplane data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirplanesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /taxes:
+    get:
+      operationId: getTaxes
+      summary: Aviation Taxes
+      description: >
+        Retrieve aviation tax reference data including IATA tax codes and names.
+      tags:
+        - Pricing
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - name: codeIataTax
+          in: query
+          description: IATA tax code
+          required: false
+          schema:
+            type: string
+            example: YQ
+      responses:
+        "200":
+          description: Successful response with tax data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+  /autocomplete-cities:
+    get:
+      operationId: autocompleteCities
+      summary: Autocomplete Cities
+      description: >
+        Search for cities by partial name or abbreviation for autocomplete
+        functionality. Returns matching cities with IATA codes, country, and
+        geographic data.
+      tags:
+        - Geography
+      parameters:
+        - $ref: '#/components/parameters/AccessKey'
+        - name: city
+          in: query
+          description: City name or abbreviation to search for
+          required: true
+          schema:
+            type: string
+            example: New York
+      responses:
+        "200":
+          description: Successful response with matching cities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+components:
+  securitySchemes:
+    AccessKey:
+      type: apiKey
+      in: query
+      name: access_key
+      description: API key obtained from your FlightLabs dashboard
+  parameters:
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 101
+            type:
+              type: string
+              example: invalid_access_key
+            info:
+              type: string
+              example: You have not supplied a valid API Access Key.
+    FlightData:
+      type: object
+      description: Real-time or historical flight data record
+      properties:
+        hex:
+          type: string
+          description: ICAO24 hex identifier for the aircraft
+          example: a1b2c3
+        reg_number:
+          type: string
+          description: Aircraft registration number
+          example: N12345
+        flag:
+          type: string
+          description: Country flag code
+          example: US
+        lat:
+          type: number
+          format: float
+          description: Aircraft latitude
+          example: 40.7128
+        lng:
+          type: number
+          format: float
+          description: Aircraft longitude
+          example: -74.0060
+        alt:
+          type: number
+          format: float
+          description: Aircraft altitude in feet
+          example: 35000
+        dir:
+          type: number
+          format: float
+          description: Aircraft heading in degrees
+          example: 270.5
+        speed:
+          type: number
+          format: float
+          description: Aircraft speed in km/h
+          example: 900
+        v_speed:
+          type: number
+          format: float
+          description: Vertical speed in ft/min
+          example: 0
+        squawk:
+          type: string
+          description: Transponder squawk code
+          example: "1234"
+        flight_number:
+          type: string
+          description: Flight number
+          example: "100"
+        flight_icao:
+          type: string
+          description: Flight ICAO code
+          example: AAL100
+        flight_iata:
+          type: string
+          description: Flight IATA code
+          example: AA100
+        dep_icao:
+          type: string
+          description: Departure airport ICAO code
+          example: KJFK
+        dep_iata:
+          type: string
+          description: Departure airport IATA code
+          example: JFK
+        arr_icao:
+          type: string
+          description: Arrival airport ICAO code
+          example: KLAX
+        arr_iata:
+          type: string
+          description: Arrival airport IATA code
+          example: LAX
+        airline_icao:
+          type: string
+          description: Airline ICAO code
+          example: AAL
+        airline_iata:
+          type: string
+          description: Airline IATA code
+          example: AA
+        eta:
+          type: integer
+          description: Estimated time of arrival (Unix timestamp)
+          example: 1720000000
+        status:
+          type: string
+          description: Flight status
+          enum:
+            - en-route
+            - landed
+            - scheduled
+            - cancelled
+            - diverted
+          example: en-route
+        updated:
+          type: integer
+          description: Last update time (Unix timestamp)
+          example: 1719999000
+    FlightsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlightData'
+    ScheduleEntry:
+      type: object
+      description: Scheduled flight entry
+      properties:
+        airline_iata:
+          type: string
+          example: AA
+        airline_icao:
+          type: string
+          example: AAL
+        flight_iata:
+          type: string
+          example: AA100
+        flight_icao:
+          type: string
+          example: AAL100
+        flight_number:
+          type: string
+          example: "100"
+        cs_airline_iata:
+          type: string
+          description: Code-share airline IATA
+          example: BA
+        cs_flight_number:
+          type: string
+          description: Code-share flight number
+          example: "6000"
+        cs_flight_iata:
+          type: string
+          description: Code-share flight IATA
+          example: BA6000
+        status:
+          type: string
+          example: scheduled
+        dep_iata:
+          type: string
+          example: JFK
+        dep_icao:
+          type: string
+          example: KJFK
+        dep_terminal:
+          type: string
+          example: "8"
+        dep_gate:
+          type: string
+          example: B12
+        dep_time:
+          type: string
+          format: date-time
+          example: "2026-06-13T10:00:00.000"
+        dep_time_utc:
+          type: string
+          format: date-time
+          example: "2026-06-13T14:00:00.000"
+        arr_iata:
+          type: string
+          example: LAX
+        arr_icao:
+          type: string
+          example: KLAX
+        arr_terminal:
+          type: string
+          example: "4"
+        arr_gate:
+          type: string
+          example: A5
+        arr_time:
+          type: string
+          format: date-time
+          example: "2026-06-13T17:30:00.000"
+        arr_time_utc:
+          type: string
+          format: date-time
+          example: "2026-06-13T00:30:00.000"
+        duration:
+          type: integer
+          description: Flight duration in minutes
+          example: 330
+        aircraft_icao:
+          type: string
+          example: B77W
+        delayed:
+          type: integer
+          description: Delay in minutes
+          example: 0
+    SchedulesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleEntry'
+    FlightInfoResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/ScheduleEntry'
+    AirportData:
+      type: object
+      description: Airport reference data
+      properties:
+        airportId:
+          type: string
+          example: "3830"
+        nameAirport:
+          type: string
+          example: John F. Kennedy International Airport
+        codeIataAirport:
+          type: string
+          example: JFK
+        codeIcaoAirport:
+          type: string
+          example: KJFK
+        codeFaaAirport:
+          type: string
+          example: JFK
+        latitudeAirport:
+          type: number
+          format: float
+          example: 40.6398
+        longitudeAirport:
+          type: number
+          format: float
+          example: -73.7789
+        uTCHours:
+          type: number
+          format: float
+          example: -5
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        codeIataCity:
+          type: string
+          example: NYC
+        timezone:
+          type: string
+          example: America/New_York
+        GMT:
+          type: string
+          example: "-5"
+        phone:
+          type: string
+          example: "+1 718-244-4444"
+        nameTranslations:
+          type: string
+          example: Kennedy,John-F-Kennedy
+        geoHash:
+          type: string
+          example: dr5x
+        sizeAirport:
+          type: string
+          enum:
+            - large
+            - medium
+            - small
+          example: large
+    AirportsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportData'
+    CountryData:
+      type: object
+      description: Country reference data
+      properties:
+        countryId:
+          type: string
+          example: "226"
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        codeIso3Country:
+          type: string
+          example: USA
+        numericIso:
+          type: string
+          example: "840"
+        codeIataCountry:
+          type: string
+          example: US
+        nameContinent:
+          type: string
+          example: North America
+        codeContinentIata:
+          type: string
+          example: NA
+        population:
+          type: integer
+          example: 331000000
+        currencyCode:
+          type: string
+          example: USD
+        currencyName:
+          type: string
+          example: US Dollar
+        languages:
+          type: string
+          example: en-US
+        nameTranslations:
+          type: string
+          example: United States of America
+    CountriesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryData'
+    AirlineData:
+      type: object
+      description: Airline reference data
+      properties:
+        airlineId:
+          type: string
+          example: "24"
+        nameAirline:
+          type: string
+          example: American Airlines
+        codeIataAirline:
+          type: string
+          example: AA
+        iataPrefixAccounting:
+          type: string
+          example: "001"
+        codeIcaoAirline:
+          type: string
+          example: AAL
+        callsign:
+          type: string
+          example: AMERICAN
+        type:
+          type: string
+          enum:
+            - scheduled
+            - charter
+            - cargo
+            - private
+          example: scheduled
+        statusAirline:
+          type: string
+          enum:
+            - active
+            - inactive
+          example: active
+        sizeAirline:
+          type: integer
+          description: Number of aircraft in fleet
+          example: 956
+        ageFleet:
+          type: number
+          format: float
+          description: Average age of fleet in years
+          example: 11.5
+        founding:
+          type: integer
+          description: Year airline was founded
+          example: 1930
+        codeHub:
+          type: string
+          description: Primary hub airport IATA code
+          example: DFW
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        websiteAirline:
+          type: string
+          format: uri
+          example: https://www.aa.com
+    AirlinesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirlineData'
+    RouteData:
+      type: object
+      description: Airline route data
+      properties:
+        airline_iata:
+          type: string
+          example: AA
+        airline_icao:
+          type: string
+          example: AAL
+        flight_iata:
+          type: string
+          example: AA100
+        flight_icao:
+          type: string
+          example: AAL100
+        flight_number:
+          type: string
+          example: "100"
+        dep_iata:
+          type: string
+          example: JFK
+        dep_icao:
+          type: string
+          example: KJFK
+        dep_time:
+          type: string
+          description: Local departure time (HH:MM)
+          example: "10:00"
+        dep_time_utc:
+          type: string
+          description: UTC departure time (HH:MM)
+          example: "15:00"
+        dep_terminal:
+          type: string
+          example: "8"
+        arr_iata:
+          type: string
+          example: LAX
+        arr_icao:
+          type: string
+          example: KLAX
+        arr_time:
+          type: string
+          description: Local arrival time (HH:MM)
+          example: "13:30"
+        arr_time_utc:
+          type: string
+          description: UTC arrival time (HH:MM)
+          example: "21:30"
+        arr_terminal:
+          type: string
+          example: "4"
+        duration:
+          type: integer
+          description: Flight duration in minutes
+          example: 330
+        aircraft_icao:
+          type: string
+          example: B77W
+        days:
+          type: array
+          description: Days of the week the route operates
+          items:
+            type: string
+            enum:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+              - sat
+              - sun
+          example:
+            - mon
+            - wed
+            - fri
+    RoutesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteData'
+    CityData:
+      type: object
+      description: City reference data
+      properties:
+        cityId:
+          type: string
+          example: "3400"
+        nameCity:
+          type: string
+          example: New York
+        codeIataCity:
+          type: string
+          example: NYC
+        codeIso2Country:
+          type: string
+          example: US
+        latitudeCity:
+          type: number
+          format: float
+          example: 40.7128
+        longitudeCity:
+          type: number
+          format: float
+          example: -74.0060
+        timezone:
+          type: string
+          example: America/New_York
+        GMT:
+          type: string
+          example: "-5"
+        population:
+          type: integer
+          example: 8336817
+        nameTranslations:
+          type: string
+          example: New York,Nueva York
+    CitiesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CityData'
+    AircraftTypeData:
+      type: object
+      description: Aircraft type reference data
+      properties:
+        aircraftTypeId:
+          type: string
+          example: "1"
+        nameAircraftType:
+          type: string
+          example: Boeing 737-800
+        codeIataAircraftType:
+          type: string
+          example: B738
+    AircraftTypesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AircraftTypeData'
+    AirplaneData:
+      type: object
+      description: Airplane reference data
+      properties:
+        numberRegistration:
+          type: string
+          example: N12345
+        productionLine:
+          type: string
+          example: Boeing 737 Classic
+        airplaneIataType:
+          type: string
+          example: B738
+        planeModel:
+          type: string
+          example: 737-800
+        modelCode:
+          type: string
+          example: B738
+        hexIcaoAirplane:
+          type: string
+          example: a1b2c3
+        codeIataAirline:
+          type: string
+          example: AA
+        codeIcaoAirline:
+          type: string
+          example: AAL
+        planeAge:
+          type: string
+          description: Age of aircraft in years
+          example: "10"
+        statusPlane:
+          type: string
+          enum:
+            - active
+            - stored
+            - scrapped
+          example: active
+        planeOwner:
+          type: string
+          example: American Airlines
+        enginesCount:
+          type: string
+          example: "2"
+        enginesType:
+          type: string
+          enum:
+            - JET
+            - PISTON
+            - TURBOPROP
+          example: JET
+        planeSerialNumber:
+          type: string
+          example: "30000"
+        lineNumber:
+          type: string
+          example: "500"
+        constructionNumber:
+          type: string
+          example: "12345"
+        deliveryDate:
+          type: string
+          format: date
+          example: "2016-06-01"
+        firstFlight:
+          type: string
+          format: date
+          example: "2016-04-01"
+        registrationDate:
+          type: string
+          format: date
+          example: "2016-06-15"
+        rolloutDate:
+          type: string
+          format: date
+          example: "2016-03-01"
+    AirplanesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirplaneData'
+    TaxData:
+      type: object
+      description: Aviation tax reference data
+      properties:
+        taxId:
+          type: string
+          example: "1"
+        nameTax:
+          type: string
+          example: Fuel Surcharge
+        codeIataTax:
+          type: string
+          example: YQ
+    TaxesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxData'
+    FlightPriceData:
+      type: object
+      description: Flight pricing data
+      properties:
+        dep_iata:
+          type: string
+          example: JFK
+        arr_iata:
+          type: string
+          example: LAX
+        airline_iata:
+          type: string
+          example: AA
+        flight_iata:
+          type: string
+          example: AA100
+        dep_time:
+          type: string
+          format: date-time
+          example: "2026-07-01T10:00:00.000"
+        arr_time:
+          type: string
+          format: date-time
+          example: "2026-07-01T13:30:00.000"
+        price:
+          type: number
+          format: float
+          description: Price in specified currency
+          example: 299.99
+        currency:
+          type: string
+          description: Currency code (ISO 4217)
+          example: USD
+        seats_available:
+          type: integer
+          description: Number of seats available
+          example: 12
+        cabin_class:
+          type: string
+          enum:
+            - economy
+            - premium_economy
+            - business
+            - first
+          example: economy
+    FlightPricesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlightPriceData'

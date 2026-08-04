@@ -1,0 +1,26 @@
+{
+  "provider": "flightlabs",
+  "sources": [
+    "flightlabs-aircraft-api-openapi.yml",
+    "flightlabs-airlines-api-openapi.yml",
+    "flightlabs-airports-api-openapi.yml",
+    "flightlabs-flights-api-openapi.yml",
+    "flightlabs-geography-api-openapi.yml",
+    "flightlabs-pricing-api-openapi.yml",
+    "flightlabs-routes-api-openapi.yml"
+  ],
+  "outputs": [
+    "flightlabs-aircraft-api-openapi.yml",
+    "flightlabs-airlines-api-openapi.yml",
+    "flightlabs-airports-api-openapi.yml",
+    "flightlabs-flights-api-openapi.yml",
+    "flightlabs-geography-api-openapi.yml",
+    "flightlabs-pricing-api-openapi.yml",
+    "flightlabs-routes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

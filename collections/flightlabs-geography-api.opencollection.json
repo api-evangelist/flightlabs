@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Geography API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geography",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/countries",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "codeIso2Country",
+                "value": "",
+                "type": "query",
+                "description": "Country ISO 2-letter code"
+              },
+              {
+                "name": "nameCountry",
+                "value": "",
+                "type": "query",
+                "description": "Country name filter"
+              }
+            ]
+          },
+          "docs": "Retrieve country reference data including codes, names, population, continent, and currency information.\n"
+        },
+        {
+          "info": {
+            "name": "Cities By IATA Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/cities",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "codeIataCity",
+                "value": "",
+                "type": "query",
+                "description": "City IATA code"
+              },
+              {
+                "name": "codeIso2Country",
+                "value": "",
+                "type": "query",
+                "description": "Country ISO 2-letter code"
+              }
+            ]
+          },
+          "docs": "Retrieve city reference data including IATA codes, coordinates, timezone, population, and multilingual names.\n"
+        },
+        {
+          "info": {
+            "name": "Autocomplete Cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/autocomplete-cities",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name or abbreviation to search for"
+              }
+            ]
+          },
+          "docs": "Search for cities by partial name or abbreviation for autocomplete functionality. Returns matching cities with IATA codes, country, and geographic data.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

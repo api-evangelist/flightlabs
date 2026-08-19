@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "1b17b556-57f9-4c30-be94-e1bf5b806457",
+      "name": "Aircraft",
+      "description": {
+        "content": "Aircraft and aircraft type reference data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a419b684-93bf-4b3b-b21d-4445106e0f73",
+          "name": "Aircraft Types",
+          "request": {
+            "name": "Aircraft Types",
+            "description": {
+              "content": "Retrieve aircraft type reference data including IATA codes and type names.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aircraft_types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIataAircraft",
+                  "value": "<string>",
+                  "description": "Aircraft IATA code (e.g. B737)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91fe1616-0e7d-4085-a50f-e6423635d835",
+              "name": "Successful response with aircraft type data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aircraft_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataAircraft",
+                      "value": "B737"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"aircraftTypeId\": \"1\",\n      \"nameAircraftType\": \"Boeing 737-800\",\n      \"codeIataAircraftType\": \"B738\"\n    },\n    {\n      \"aircraftTypeId\": \"1\",\n      \"nameAircraftType\": \"Boeing 737-800\",\n      \"codeIataAircraftType\": \"B738\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bcff98c-61b6-4911-97d2-ac35159e6c6f",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aircraft_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataAircraft",
+                      "value": "B737"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "103258e0-676c-4d5b-a885-20f1cc1b80b3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aircraft_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataAircraft",
+                      "value": "B737"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74898737-7a67-48d3-b756-0ed8024bc4e4",
+          "name": "Airplanes",
+          "request": {
+            "name": "Airplanes",
+            "description": {
+              "content": "Retrieve airplane (aircraft) reference data by registration number, hex ICAO code, or airline. Returns registration details, model, type codes, construction/delivery dates, and engine specifications. Note - This endpoint is deprecated and may be removed in a future version.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "airplanes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "numberRegistration",
+                  "value": "<string>",
+                  "description": "Aircraft registration number"
+                },
+                {
+                  "disabled": false,
+                  "key": "hexIcaoAirplane",
+                  "value": "<string>",
+                  "description": "Hex ICAO code for the aircraft"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIataAirline",
+                  "value": "<string>",
+                  "description": "Airline IATA code to filter aircraft"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "600df7e3-28b7-4c1f-a26b-6046bd7ac6d1",
+              "name": "Successful response with airplane data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "numberRegistration",
+                      "value": "N12345"
+                    },
+                    {
+                      "key": "hexIcaoAirplane",
+                      "value": "a1b2c3"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"numberRegistration\": \"N12345\",\n      \"productionLine\": \"Boeing 737 Classic\",\n      \"airplaneIataType\": \"B738\",\n      \"planeModel\": \"737-800\",\n      \"modelCode\": \"B738\",\n      \"hexIcaoAirplane\": \"a1b2c3\",\n      \"codeIataAirline\": \"AA\",\n      \"codeIcaoAirline\": \"AAL\",\n      \"planeAge\": \"10\",\n      \"statusPlane\": \"active\",\n      \"planeOwner\": \"American Airlines\",\n      \"enginesCount\": \"2\",\n      \"enginesType\": \"JET\",\n      \"planeSerialNumber\": \"30000\",\n      \"lineNumber\": \"500\",\n      \"constructionNumber\": \"12345\",\n      \"deliveryDate\": \"2016-06-01\",\n      \"firstFlight\": \"2016-04-01\",\n      \"registrationDate\": \"2016-06-15\",\n      \"rolloutDate\": \"2016-03-01\"\n    },\n    {\n      \"numberRegistration\": \"N12345\",\n      \"productionLine\": \"Boeing 737 Classic\",\n      \"airplaneIataType\": \"B738\",\n      \"planeModel\": \"737-800\",\n      \"modelCode\": \"B738\",\n      \"hexIcaoAirplane\": \"a1b2c3\",\n      \"codeIataAirline\": \"AA\",\n      \"codeIcaoAirline\": \"AAL\",\n      \"planeAge\": \"10\",\n      \"statusPlane\": \"active\",\n      \"planeOwner\": \"American Airlines\",\n      \"enginesCount\": \"2\",\n      \"enginesType\": \"JET\",\n      \"planeSerialNumber\": \"30000\",\n      \"lineNumber\": \"500\",\n      \"constructionNumber\": \"12345\",\n      \"deliveryDate\": \"2016-06-01\",\n      \"firstFlight\": \"2016-04-01\",\n      \"registrationDate\": \"2016-06-15\",\n      \"rolloutDate\": \"2016-03-01\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5425a34c-ed0f-4d6d-893a-1a2fd606cea9",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "numberRegistration",
+                      "value": "N12345"
+                    },
+                    {
+                      "key": "hexIcaoAirplane",
+                      "value": "a1b2c3"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2a447ab-7636-4855-ad1a-d573c0dc25bd",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "numberRegistration",
+                      "value": "N12345"
+                    },
+                    {
+                      "key": "hexIcaoAirplane",
+                      "value": "a1b2c3"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.goflightlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d39487e2-4e8f-4574-830d-1b26638c82e3",
+    "name": "FlightLabs Aircraft API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.\n\n\nContact Support:\n Name: FlightLabs Support\n Email: hello@goflightlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

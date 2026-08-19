@@ -1,0 +1,505 @@
+{
+  "item": [
+    {
+      "id": "503d506a-32df-4d2e-9b5e-94d00bc60798",
+      "name": "Pricing",
+      "description": {
+        "content": "Flight pricing and fare data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8999f180-ebc7-4fd8-acb3-7a9b0792b11b",
+          "name": "Flight Prices",
+          "request": {
+            "name": "Flight Prices",
+            "description": {
+              "content": "Search fares and pricing between airports on specified travel dates. Returns price estimates and availability information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flight-prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return (integer, up to 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "depIata",
+                  "value": "<string>",
+                  "description": "Departure airport IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrIata",
+                  "value": "<string>",
+                  "description": "Arrival airport IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Travel date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Currency code for prices (ISO 4217)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0dba810b-43cc-440f-9022-df089cc368c7",
+              "name": "Successful response with flight prices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flight-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "depIata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "arrIata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "date",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"dep_iata\": \"JFK\",\n      \"arr_iata\": \"LAX\",\n      \"airline_iata\": \"AA\",\n      \"flight_iata\": \"AA100\",\n      \"dep_time\": \"2026-07-01T10:00:00.000\",\n      \"arr_time\": \"2026-07-01T13:30:00.000\",\n      \"price\": 299.99,\n      \"currency\": \"USD\",\n      \"seats_available\": 12,\n      \"cabin_class\": \"economy\"\n    },\n    {\n      \"dep_iata\": \"JFK\",\n      \"arr_iata\": \"LAX\",\n      \"airline_iata\": \"AA\",\n      \"flight_iata\": \"AA100\",\n      \"dep_time\": \"2026-07-01T10:00:00.000\",\n      \"arr_time\": \"2026-07-01T13:30:00.000\",\n      \"price\": 299.99,\n      \"currency\": \"USD\",\n      \"seats_available\": 12,\n      \"cabin_class\": \"economy\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7aaae7c-039a-4c16-b998-d0f050916bde",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flight-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "depIata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "arrIata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "date",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33a47dbd-48b5-46d6-9551-1642c89427a3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flight-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "depIata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "arrIata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "date",
+                      "value": "2026-07-01"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "268ae493-cfe1-44d1-a623-c6c8849de5ef",
+          "name": "Aviation Taxes",
+          "request": {
+            "name": "Aviation Taxes",
+            "description": {
+              "content": "Retrieve aviation tax reference data including IATA tax codes and names.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIataTax",
+                  "value": "<string>",
+                  "description": "IATA tax code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb835505-0236-4256-a05d-c6528bff4406",
+              "name": "Successful response with tax data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataTax",
+                      "value": "YQ"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"taxId\": \"1\",\n      \"nameTax\": \"Fuel Surcharge\",\n      \"codeIataTax\": \"YQ\"\n    },\n    {\n      \"taxId\": \"1\",\n      \"nameTax\": \"Fuel Surcharge\",\n      \"codeIataTax\": \"YQ\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d06b1558-a06b-4457-a712-bfcd25b6ad5a",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataTax",
+                      "value": "YQ"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d1f6b6e-02e1-4f09-ac8c-a29f118506f8",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "codeIataTax",
+                      "value": "YQ"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.goflightlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c8642224-c8e8-4685-b541-2ba9483e0591",
+    "name": "FlightLabs Aircraft Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.\n\n\nContact Support:\n Name: FlightLabs Support\n Email: hello@goflightlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

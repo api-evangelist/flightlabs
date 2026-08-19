@@ -1,0 +1,697 @@
+{
+  "item": [
+    {
+      "id": "113c3746-5178-42b8-b4f8-0ee8bbdbc986",
+      "name": "Geography",
+      "description": {
+        "content": "Countries and cities reference data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51feb326-12ba-4eaf-ad4c-153d493751ec",
+          "name": "Retrieve Countries",
+          "request": {
+            "name": "Retrieve Countries",
+            "description": {
+              "content": "Retrieve country reference data including codes, names, population, continent, and currency information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return (integer, up to 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIso2Country",
+                  "value": "<string>",
+                  "description": "Country ISO 2-letter code"
+                },
+                {
+                  "disabled": false,
+                  "key": "nameCountry",
+                  "value": "<string>",
+                  "description": "Country name filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bd6d539-7fc4-46a6-814b-c3df411895a8",
+              "name": "Successful response with country data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "nameCountry",
+                      "value": "United States"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"countryId\": \"226\",\n      \"nameCountry\": \"United States\",\n      \"codeIso2Country\": \"US\",\n      \"codeIso3Country\": \"USA\",\n      \"numericIso\": \"840\",\n      \"codeIataCountry\": \"US\",\n      \"nameContinent\": \"North America\",\n      \"codeContinentIata\": \"NA\",\n      \"population\": 331000000,\n      \"currencyCode\": \"USD\",\n      \"currencyName\": \"US Dollar\",\n      \"languages\": \"en-US\",\n      \"nameTranslations\": \"United States of America\"\n    },\n    {\n      \"countryId\": \"226\",\n      \"nameCountry\": \"United States\",\n      \"codeIso2Country\": \"US\",\n      \"codeIso3Country\": \"USA\",\n      \"numericIso\": \"840\",\n      \"codeIataCountry\": \"US\",\n      \"nameContinent\": \"North America\",\n      \"codeContinentIata\": \"NA\",\n      \"population\": 331000000,\n      \"currencyCode\": \"USD\",\n      \"currencyName\": \"US Dollar\",\n      \"languages\": \"en-US\",\n      \"nameTranslations\": \"United States of America\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd6434bc-993b-40ee-8f5a-32e86a1bf01d",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "nameCountry",
+                      "value": "United States"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5026dafa-1000-4bdd-881a-3c4bb56ac674",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "nameCountry",
+                      "value": "United States"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc3134df-6e64-4156-8034-c3368642be53",
+          "name": "Cities By IATA Code",
+          "request": {
+            "name": "Cities By IATA Code",
+            "description": {
+              "content": "Retrieve city reference data including IATA codes, coordinates, timezone, population, and multilingual names.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return (integer, up to 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIataCity",
+                  "value": "<string>",
+                  "description": "City IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIso2Country",
+                  "value": "<string>",
+                  "description": "Country ISO 2-letter code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63171632-0a2e-444c-9a7f-1275db32e98a",
+              "name": "Successful response with city data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataCity",
+                      "value": "NYC"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"cityId\": \"3400\",\n      \"nameCity\": \"New York\",\n      \"codeIataCity\": \"NYC\",\n      \"codeIso2Country\": \"US\",\n      \"latitudeCity\": 40.7128,\n      \"longitudeCity\": -74.006,\n      \"timezone\": \"America/New_York\",\n      \"GMT\": \"-5\",\n      \"population\": 8336817,\n      \"nameTranslations\": \"New York,Nueva York\"\n    },\n    {\n      \"cityId\": \"3400\",\n      \"nameCity\": \"New York\",\n      \"codeIataCity\": \"NYC\",\n      \"codeIso2Country\": \"US\",\n      \"latitudeCity\": 40.7128,\n      \"longitudeCity\": -74.006,\n      \"timezone\": \"America/New_York\",\n      \"GMT\": \"-5\",\n      \"population\": 8336817,\n      \"nameTranslations\": \"New York,Nueva York\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e75f5cb-b38f-4bec-b32d-3c1cae384e8f",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataCity",
+                      "value": "NYC"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba5c2c4f-2e8f-440e-9e41-3c49ca31df71",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataCity",
+                      "value": "NYC"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f355cc7-2eb8-42bf-9a6b-6c04806b9dec",
+          "name": "Autocomplete Cities",
+          "request": {
+            "name": "Autocomplete Cities",
+            "description": {
+              "content": "Search for cities by partial name or abbreviation for autocomplete functionality. Returns matching cities with IATA codes, country, and geographic data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autocomplete-cities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) City name or abbreviation to search for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8225f717-1ed6-4084-bb43-09391ba23d16",
+              "name": "Successful response with matching cities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autocomplete-cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"cityId\": \"3400\",\n      \"nameCity\": \"New York\",\n      \"codeIataCity\": \"NYC\",\n      \"codeIso2Country\": \"US\",\n      \"latitudeCity\": 40.7128,\n      \"longitudeCity\": -74.006,\n      \"timezone\": \"America/New_York\",\n      \"GMT\": \"-5\",\n      \"population\": 8336817,\n      \"nameTranslations\": \"New York,Nueva York\"\n    },\n    {\n      \"cityId\": \"3400\",\n      \"nameCity\": \"New York\",\n      \"codeIataCity\": \"NYC\",\n      \"codeIso2Country\": \"US\",\n      \"latitudeCity\": 40.7128,\n      \"longitudeCity\": -74.006,\n      \"timezone\": \"America/New_York\",\n      \"GMT\": \"-5\",\n      \"population\": 8336817,\n      \"nameTranslations\": \"New York,Nueva York\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "185c4172-f9c7-4efb-9fcc-875a00ead379",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autocomplete-cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c05294f-58fa-4a43-908c-81d0a12d6d50",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autocomplete-cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.goflightlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "14e19a26-d4e2-4e3c-8611-991797a6cceb",
+    "name": "FlightLabs Aircraft Geography API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.\n\n\nContact Support:\n Name: FlightLabs Support\n Email: hello@goflightlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

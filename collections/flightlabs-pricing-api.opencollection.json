@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Pricing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Flight Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flight-prices",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Travel date (YYYY-MM-DD)"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Currency code for prices (ISO 4217)"
+              }
+            ]
+          },
+          "docs": "Search fares and pricing between airports on specified travel dates. Returns price estimates and availability information.\n"
+        },
+        {
+          "info": {
+            "name": "Aviation Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/taxes",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "codeIataTax",
+                "value": "",
+                "type": "query",
+                "description": "IATA tax code"
+              }
+            ]
+          },
+          "docs": "Retrieve aviation tax reference data including IATA tax codes and names.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

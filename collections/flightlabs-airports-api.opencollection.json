@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Airports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Airports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Airports by Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/airports",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "codeIataAirport",
+                "value": "",
+                "type": "query",
+                "description": "Airport IATA code (e.g. JFK)"
+              },
+              {
+                "name": "codeIso2Country",
+                "value": "",
+                "type": "query",
+                "description": "Country ISO 2-letter code to filter airports"
+              }
+            ]
+          },
+          "docs": "Retrieve airport information filtered by IATA code, country, or other criteria. Returns comprehensive airport details including codes, coordinates, timezone, runway count, and contact information.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

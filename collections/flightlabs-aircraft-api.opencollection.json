@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Aircraft",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Aircraft Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/aircraft_types",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "codeIataAircraft",
+                "value": "",
+                "type": "query",
+                "description": "Aircraft IATA code (e.g. B737)"
+              }
+            ]
+          },
+          "docs": "Retrieve aircraft type reference data including IATA codes and type names.\n"
+        },
+        {
+          "info": {
+            "name": "Airplanes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/airplanes",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "numberRegistration",
+                "value": "",
+                "type": "query",
+                "description": "Aircraft registration number"
+              },
+              {
+                "name": "hexIcaoAirplane",
+                "value": "",
+                "type": "query",
+                "description": "Hex ICAO code for the aircraft"
+              },
+              {
+                "name": "codeIataAirline",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code to filter aircraft"
+              }
+            ]
+          },
+          "docs": "Retrieve airplane (aircraft) reference data by registration number, hex ICAO code, or airline. Returns registration details, model, type codes, construction/delivery dates, and engine specifications. Note - This endpoint is deprecated and may be removed in a future version.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

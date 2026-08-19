@@ -1,0 +1,439 @@
+{
+  "item": [
+    {
+      "id": "1b44aa8d-8d2f-4225-8973-368a56703463",
+      "name": "Routes",
+      "description": {
+        "content": "Airline route data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd0a8ef3-e261-4ac6-a396-146cd1c771df",
+          "name": "Airlines Routes",
+          "request": {
+            "name": "Airlines Routes",
+            "description": {
+              "content": "Retrieve airline route data updated every 24 hours. Returns flight schedule information including departure/arrival details, duration, aircraft type, and operational days.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return (integer, up to 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dep_iata",
+                  "value": "<string>",
+                  "description": "Departure airport IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "dep_icao",
+                  "value": "<string>",
+                  "description": "Departure airport ICAO code"
+                },
+                {
+                  "disabled": false,
+                  "key": "arr_iata",
+                  "value": "<string>",
+                  "description": "Arrival airport IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "arr_icao",
+                  "value": "<string>",
+                  "description": "Arrival airport ICAO code"
+                },
+                {
+                  "disabled": false,
+                  "key": "airline_iata",
+                  "value": "<string>",
+                  "description": "Airline IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "airline_icao",
+                  "value": "<string>",
+                  "description": "Airline ICAO code"
+                },
+                {
+                  "disabled": false,
+                  "key": "flight_iata",
+                  "value": "<string>",
+                  "description": "Flight IATA code"
+                },
+                {
+                  "disabled": false,
+                  "key": "flight_icao",
+                  "value": "<string>",
+                  "description": "Flight ICAO code"
+                },
+                {
+                  "disabled": false,
+                  "key": "flight_number",
+                  "value": "<string>",
+                  "description": "Flight number only"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1264e983-c25e-425d-9e49-23344b1856b2",
+              "name": "Successful response with route data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "dep_iata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "dep_icao",
+                      "value": "KJFK"
+                    },
+                    {
+                      "key": "arr_iata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "arr_icao",
+                      "value": "KLAX"
+                    },
+                    {
+                      "key": "airline_iata",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "airline_icao",
+                      "value": "AAL"
+                    },
+                    {
+                      "key": "flight_iata",
+                      "value": "AA100"
+                    },
+                    {
+                      "key": "flight_icao",
+                      "value": "AAL100"
+                    },
+                    {
+                      "key": "flight_number",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "dep_iata,arr_iata,airline_iata"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"airline_iata\": \"AA\",\n      \"airline_icao\": \"AAL\",\n      \"flight_iata\": \"AA100\",\n      \"flight_icao\": \"AAL100\",\n      \"flight_number\": \"100\",\n      \"dep_iata\": \"JFK\",\n      \"dep_icao\": \"KJFK\",\n      \"dep_time\": \"10:00\",\n      \"dep_time_utc\": \"15:00\",\n      \"dep_terminal\": \"8\",\n      \"arr_iata\": \"LAX\",\n      \"arr_icao\": \"KLAX\",\n      \"arr_time\": \"13:30\",\n      \"arr_time_utc\": \"21:30\",\n      \"arr_terminal\": \"4\",\n      \"duration\": 330,\n      \"aircraft_icao\": \"B77W\",\n      \"days\": [\n        \"mon\",\n        \"wed\",\n        \"fri\"\n      ]\n    },\n    {\n      \"airline_iata\": \"AA\",\n      \"airline_icao\": \"AAL\",\n      \"flight_iata\": \"AA100\",\n      \"flight_icao\": \"AAL100\",\n      \"flight_number\": \"100\",\n      \"dep_iata\": \"JFK\",\n      \"dep_icao\": \"KJFK\",\n      \"dep_time\": \"10:00\",\n      \"dep_time_utc\": \"15:00\",\n      \"dep_terminal\": \"8\",\n      \"arr_iata\": \"LAX\",\n      \"arr_icao\": \"KLAX\",\n      \"arr_time\": \"13:30\",\n      \"arr_time_utc\": \"21:30\",\n      \"arr_terminal\": \"4\",\n      \"duration\": 330,\n      \"aircraft_icao\": \"B77W\",\n      \"days\": [\n        \"mon\",\n        \"wed\",\n        \"fri\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "924abd14-5128-41a3-805c-a285d54b6296",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "dep_iata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "dep_icao",
+                      "value": "KJFK"
+                    },
+                    {
+                      "key": "arr_iata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "arr_icao",
+                      "value": "KLAX"
+                    },
+                    {
+                      "key": "airline_iata",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "airline_icao",
+                      "value": "AAL"
+                    },
+                    {
+                      "key": "flight_iata",
+                      "value": "AA100"
+                    },
+                    {
+                      "key": "flight_icao",
+                      "value": "AAL100"
+                    },
+                    {
+                      "key": "flight_number",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "dep_iata,arr_iata,airline_iata"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13313d03-e513-45db-a3ff-ca347e855910",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "dep_iata",
+                      "value": "JFK"
+                    },
+                    {
+                      "key": "dep_icao",
+                      "value": "KJFK"
+                    },
+                    {
+                      "key": "arr_iata",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "arr_icao",
+                      "value": "KLAX"
+                    },
+                    {
+                      "key": "airline_iata",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "airline_icao",
+                      "value": "AAL"
+                    },
+                    {
+                      "key": "flight_iata",
+                      "value": "AA100"
+                    },
+                    {
+                      "key": "flight_icao",
+                      "value": "AAL100"
+                    },
+                    {
+                      "key": "flight_number",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "dep_iata,arr_iata,airline_iata"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.goflightlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "721ec2f1-f0b8-47df-8528-2bf62ff96ef2",
+    "name": "FlightLabs Aircraft Routes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.\n\n\nContact Support:\n Name: FlightLabs Support\n Email: hello@goflightlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

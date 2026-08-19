@@ -1,0 +1,497 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Flights API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Real-Time Flights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flights",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "flightIata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by flight IATA code (e.g. AA100)"
+              },
+              {
+                "name": "flightIcao",
+                "value": "",
+                "type": "query",
+                "description": "Filter by flight ICAO code (e.g. AAL100)"
+              },
+              {
+                "name": "flightNum",
+                "value": "",
+                "type": "query",
+                "description": "Filter by flight number only (e.g. 100)"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by airline IATA code (e.g. AA)"
+              },
+              {
+                "name": "airlineIcao",
+                "value": "",
+                "type": "query",
+                "description": "Filter by airline ICAO code (e.g. AAL)"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by departure airport IATA code"
+              },
+              {
+                "name": "depIcao",
+                "value": "",
+                "type": "query",
+                "description": "Filter by departure airport ICAO code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by arrival airport IATA code"
+              },
+              {
+                "name": "arrIcao",
+                "value": "",
+                "type": "query",
+                "description": "Filter by arrival airport ICAO code"
+              },
+              {
+                "name": "regNum",
+                "value": "",
+                "type": "query",
+                "description": "Filter by aircraft registration number"
+              },
+              {
+                "name": "hex",
+                "value": "",
+                "type": "query",
+                "description": "Filter by aircraft ICAO24 hex code"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time live flight information for active flights globally. Returns live aircraft positions, flight status, departure/arrival information, and more.\n"
+        },
+        {
+          "info": {
+            "name": "Flights with CallSign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flights-callsign",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "callsign",
+                "value": "",
+                "type": "query",
+                "description": "Aircraft callsign to search for"
+              },
+              {
+                "name": "airlineIcao",
+                "value": "",
+                "type": "query",
+                "description": "Airline ICAO code to filter results"
+              }
+            ]
+          },
+          "docs": "Look up active flights by callsign or airline ICAO code. Returns real-time flight status for the matched aircraft.\n"
+        },
+        {
+          "info": {
+            "name": "Historical Flights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/historical-flights",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "flightIata",
+                "value": "",
+                "type": "query",
+                "description": "Flight IATA code"
+              },
+              {
+                "name": "flightIcao",
+                "value": "",
+                "type": "query",
+                "description": "Flight ICAO code"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date for historical query (YYYY-MM-DD)"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date for historical query (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieve historical flight data for past departures and arrivals within a specified date range.\n"
+        },
+        {
+          "info": {
+            "name": "Flights Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/schedules",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code"
+              },
+              {
+                "name": "flightIata",
+                "value": "",
+                "type": "query",
+                "description": "Flight IATA code"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Schedule type - departure or arrival"
+              }
+            ]
+          },
+          "docs": "Retrieve current and upcoming scheduled flights for airports, including departures and arrivals with times, terminals, and status.\n"
+        },
+        {
+          "info": {
+            "name": "Future Flights Prediction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/future-flights",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Future date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieve predicted flight schedules for future dates (7+ days ahead). Useful for planning and forecasting.\n"
+        },
+        {
+          "info": {
+            "name": "Flight Delay",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flight-delay",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Delay type - departure or arrival"
+              },
+              {
+                "name": "depIata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "arrIata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code"
+              },
+              {
+                "name": "minDelay",
+                "value": "",
+                "type": "query",
+                "description": "Minimum delay in minutes to filter results"
+              }
+            ]
+          },
+          "docs": "Retrieve flights that are delayed beyond specified thresholds. Returns scheduled vs actual times for delayed departures and arrivals.\n"
+        },
+        {
+          "info": {
+            "name": "Flights By Airline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flights-by-airline",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "airlineIata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code (required)"
+              },
+              {
+                "name": "airlineIcao",
+                "value": "",
+                "type": "query",
+                "description": "Airline ICAO code"
+              }
+            ]
+          },
+          "docs": "Filter the live flight feed by airline operator to retrieve all active flights operated by a specific airline.\n"
+        },
+        {
+          "info": {
+            "name": "Flight Data by Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flight-data-by-date",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "flightIata",
+                "value": "",
+                "type": "query",
+                "description": "Flight IATA code (e.g. AA100)"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed flight records for a specific flight number across a date range.\n"
+        },
+        {
+          "info": {
+            "name": "Flight Info By Flight Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/flight-info",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "flightIata",
+                "value": "",
+                "type": "query",
+                "description": "Flight IATA code (e.g. AA100)"
+              },
+              {
+                "name": "flightIcao",
+                "value": "",
+                "type": "query",
+                "description": "Flight ICAO code (e.g. AAL100)"
+              },
+              {
+                "name": "flightNum",
+                "value": "",
+                "type": "query",
+                "description": "Flight number only (e.g. 100)"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific flight number, including status, schedule, aircraft, and route details.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

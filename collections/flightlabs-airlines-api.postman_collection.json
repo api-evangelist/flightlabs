@@ -1,0 +1,277 @@
+{
+  "item": [
+    {
+      "id": "a2e555c8-5262-47e1-940c-d607a4bd0832",
+      "name": "Airlines",
+      "description": {
+        "content": "Airline reference data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0353fc9-1cc9-495c-ba17-055a95791f84",
+          "name": "Retrieve Airlines",
+          "request": {
+            "name": "Retrieve Airlines",
+            "description": {
+              "content": "Retrieve airline directory with optional filtering by IATA code or country. Returns airline details including codes, callsign, fleet statistics, safety certifications, and contact information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "airlines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_key",
+                  "value": "<string>",
+                  "description": "(Required) Your FlightLabs API access key"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return (integer, up to 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIataAirline",
+                  "value": "<string>",
+                  "description": "Airline IATA code (e.g. AA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "codeIso2Country",
+                  "value": "<string>",
+                  "description": "Country ISO code to filter airlines"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21847900-d549-4d11-957d-0a0af455ae00",
+              "name": "Successful response with airline data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"airlineId\": \"24\",\n      \"nameAirline\": \"American Airlines\",\n      \"codeIataAirline\": \"AA\",\n      \"iataPrefixAccounting\": \"001\",\n      \"codeIcaoAirline\": \"AAL\",\n      \"callsign\": \"AMERICAN\",\n      \"type\": \"scheduled\",\n      \"statusAirline\": \"active\",\n      \"sizeAirline\": 956,\n      \"ageFleet\": 11.5,\n      \"founding\": 1930,\n      \"codeHub\": \"DFW\",\n      \"nameCountry\": \"United States\",\n      \"codeIso2Country\": \"US\",\n      \"websiteAirline\": \"https://www.aa.com\"\n    },\n    {\n      \"airlineId\": \"24\",\n      \"nameAirline\": \"American Airlines\",\n      \"codeIataAirline\": \"AA\",\n      \"iataPrefixAccounting\": \"001\",\n      \"codeIcaoAirline\": \"AAL\",\n      \"callsign\": \"AMERICAN\",\n      \"type\": \"scheduled\",\n      \"statusAirline\": \"active\",\n      \"sizeAirline\": 956,\n      \"ageFleet\": 11.5,\n      \"founding\": 1930,\n      \"codeHub\": \"DFW\",\n      \"nameCountry\": \"United States\",\n      \"codeIso2Country\": \"US\",\n      \"websiteAirline\": \"https://www.aa.com\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "392606eb-9e6f-497a-917d-cc3d06e7fc6f",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cff3b27d-8668-40f0-94d1-faf61feea86c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "YOUR_ACCESS_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "codeIataAirline",
+                      "value": "AA"
+                    },
+                    {
+                      "key": "codeIso2Country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 101,\n    \"type\": \"invalid_access_key\",\n    \"info\": \"You have not supplied a valid API Access Key.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.goflightlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bda5a52b-3138-46e8-a34f-96d8878623c9",
+    "name": "FlightLabs Aircraft Airlines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.\n\n\nContact Support:\n Name: FlightLabs Support\n Email: hello@goflightlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

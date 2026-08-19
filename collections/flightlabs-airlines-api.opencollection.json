@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Airlines API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Airlines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Airlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/airlines",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "codeIataAirline",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code (e.g. AA)"
+              },
+              {
+                "name": "codeIso2Country",
+                "value": "",
+                "type": "query",
+                "description": "Country ISO code to filter airlines"
+              }
+            ]
+          },
+          "docs": "Retrieve airline directory with optional filtering by IATA code or country. Returns airline details including codes, callsign, fleet statistics, safety certifications, and contact information.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

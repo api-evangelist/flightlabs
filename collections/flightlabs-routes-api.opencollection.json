@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlightLabs Aircraft Routes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Airlines Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.goflightlabs.com/routes",
+            "params": [
+              {
+                "name": "access_key",
+                "value": "",
+                "type": "query",
+                "description": "Your FlightLabs API access key"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (integer, up to 10000)"
+              },
+              {
+                "name": "dep_iata",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport IATA code"
+              },
+              {
+                "name": "dep_icao",
+                "value": "",
+                "type": "query",
+                "description": "Departure airport ICAO code"
+              },
+              {
+                "name": "arr_iata",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport IATA code"
+              },
+              {
+                "name": "arr_icao",
+                "value": "",
+                "type": "query",
+                "description": "Arrival airport ICAO code"
+              },
+              {
+                "name": "airline_iata",
+                "value": "",
+                "type": "query",
+                "description": "Airline IATA code"
+              },
+              {
+                "name": "airline_icao",
+                "value": "",
+                "type": "query",
+                "description": "Airline ICAO code"
+              },
+              {
+                "name": "flight_iata",
+                "value": "",
+                "type": "query",
+                "description": "Flight IATA code"
+              },
+              {
+                "name": "flight_icao",
+                "value": "",
+                "type": "query",
+                "description": "Flight ICAO code"
+              },
+              {
+                "name": "flight_number",
+                "value": "",
+                "type": "query",
+                "description": "Flight number only"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Retrieve airline route data updated every 24 hours. Returns flight schedule information including departure/arrival details, duration, aircraft type, and operational days.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

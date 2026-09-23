@@ -1,13 +1,7 @@
 {
   "provider": "flightlabs",
   "sources": [
-    "flightlabs-aircraft-api-openapi.yml",
-    "flightlabs-airlines-api-openapi.yml",
-    "flightlabs-airports-api-openapi.yml",
-    "flightlabs-flights-api-openapi.yml",
-    "flightlabs-geography-api-openapi.yml",
-    "flightlabs-pricing-api-openapi.yml",
-    "flightlabs-routes-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "flightlabs-aircraft-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "flightlabs-aircraft-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-airlines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-airports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-flights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-geography-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flightlabs-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

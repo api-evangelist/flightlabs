@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: FlightLabs Aircraft Flights API
-  description: 'Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
-
-    '
+  title: FlightLabs Flights API
+  description: Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
   version: '1.0'
   contact:
     name: FlightLabs Support
@@ -26,9 +24,7 @@ paths:
     get:
       operationId: getRealTimeFlights
       summary: Real-Time Flights
-      description: 'Retrieve real-time live flight information for active flights globally. Returns live aircraft positions, flight status, departure/arrival information, and more.
-
-        '
+      description: Retrieve real-time live flight information for active flights globally. Returns live aircraft positions, flight status, departure/arrival information, and more.
       tags:
       - Flights
       parameters:
@@ -126,9 +122,7 @@ paths:
     get:
       operationId: getFlightsByCallsign
       summary: Flights with CallSign
-      description: 'Look up active flights by callsign or airline ICAO code. Returns real-time flight status for the matched aircraft.
-
-        '
+      description: Look up active flights by callsign or airline ICAO code. Returns real-time flight status for the matched aircraft.
       tags:
       - Flights
       parameters:
@@ -163,9 +157,7 @@ paths:
     get:
       operationId: getHistoricalFlights
       summary: Historical Flights
-      description: 'Retrieve historical flight data for past departures and arrivals within a specified date range.
-
-        '
+      description: Retrieve historical flight data for past departures and arrivals within a specified date range.
       tags:
       - Flights
       parameters:
@@ -237,9 +229,7 @@ paths:
     get:
       operationId: getFlightSchedules
       summary: Flights Schedules
-      description: 'Retrieve current and upcoming scheduled flights for airports, including departures and arrivals with times, terminals, and status.
-
-        '
+      description: Retrieve current and upcoming scheduled flights for airports, including departures and arrivals with times, terminals, and status.
       tags:
       - Flights
       parameters:
@@ -297,9 +287,7 @@ paths:
     get:
       operationId: getFutureFlights
       summary: Future Flights Prediction
-      description: 'Retrieve predicted flight schedules for future dates (7+ days ahead). Useful for planning and forecasting.
-
-        '
+      description: Retrieve predicted flight schedules for future dates (7+ days ahead). Useful for planning and forecasting.
       tags:
       - Flights
       parameters:
@@ -349,9 +337,7 @@ paths:
     get:
       operationId: getFlightDelay
       summary: Flight Delay
-      description: 'Retrieve flights that are delayed beyond specified thresholds. Returns scheduled vs actual times for delayed departures and arrivals.
-
-        '
+      description: Retrieve flights that are delayed beyond specified thresholds. Returns scheduled vs actual times for delayed departures and arrivals.
       tags:
       - Flights
       parameters:
@@ -409,9 +395,7 @@ paths:
     get:
       operationId: getFlightsByAirline
       summary: Flights By Airline
-      description: 'Filter the live flight feed by airline operator to retrieve all active flights operated by a specific airline.
-
-        '
+      description: Filter the live flight feed by airline operator to retrieve all active flights operated by a specific airline.
       tags:
       - Flights
       parameters:
@@ -446,9 +430,7 @@ paths:
     get:
       operationId: getFlightDataByDate
       summary: Flight Data by Date
-      description: 'Retrieve detailed flight records for a specific flight number across a date range.
-
-        '
+      description: Retrieve detailed flight records for a specific flight number across a date range.
       tags:
       - Flights
       parameters:
@@ -492,9 +474,7 @@ paths:
     get:
       operationId: getFlightInfoByNumber
       summary: Flight Info By Flight Number
-      description: 'Retrieve detailed information for a specific flight number, including status, schedule, aircraft, and route details.
-
-        '
+      description: Retrieve detailed information for a specific flight number, including status, schedule, aircraft, and route details.
       tags:
       - Flights
       parameters:
@@ -533,6 +513,16 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
+    SchedulesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleEntry'
     ScheduleEntry:
       type: object
       description: Scheduled flight entry
@@ -618,24 +608,6 @@ components:
           type: integer
           description: Delay in minutes
           example: 0
-    SchedulesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduleEntry'
-    FlightInfoResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          $ref: '#/components/schemas/ScheduleEntry'
     FlightData:
       type: object
       description: Real-time or historical flight data record
@@ -765,6 +737,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FlightData'
+    FlightInfoResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/ScheduleEntry'
+  parameters:
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing API key
@@ -778,25 +777,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return (integer, up to 10000)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 10000
-        example: 100
-    AccessKey:
-      name: access_key
-      in: query
-      description: Your FlightLabs API access key
-      required: true
-      schema:
-        type: string
-        example: YOUR_ACCESS_KEY
   securitySchemes:
     AccessKey:
       type: apiKey

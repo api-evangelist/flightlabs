@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: FlightLabs Aircraft Routes API
-  description: 'Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
-
-    '
+  title: FlightLabs Routes API
+  description: Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
   version: '1.0'
   contact:
     name: FlightLabs Support
@@ -26,9 +24,7 @@ paths:
     get:
       operationId: getAirlineRoutes
       summary: Airlines Routes
-      description: 'Retrieve airline route data updated every 24 hours. Returns flight schedule information including departure/arrival details, duration, aircraft type, and operational days.
-
-        '
+      description: Retrieve airline route data updated every 24 hours. Returns flight schedule information including departure/arrival details, duration, aircraft type, and operational days.
       tags:
       - Routes
       parameters:
@@ -124,6 +120,16 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
+    RoutesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteData'
     RouteData:
       type: object
       description: Airline route data
@@ -216,16 +222,25 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
-    RoutesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RouteData'
+  parameters:
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing API key
@@ -239,25 +254,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return (integer, up to 10000)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 10000
-        example: 100
-    AccessKey:
-      name: access_key
-      in: query
-      description: Your FlightLabs API access key
-      required: true
-      schema:
-        type: string
-        example: YOUR_ACCESS_KEY
   securitySchemes:
     AccessKey:
       type: apiKey

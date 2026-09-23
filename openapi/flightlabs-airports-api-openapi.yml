@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: FlightLabs Aircraft Airports API
-  description: 'Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
-
-    '
+  title: FlightLabs Airports API
+  description: Real-time and historical flight tracker and status API providing live data for flights, airports, schedules, timetables, IATA codes, airline routes, and flight pricing globally. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
   version: '1.0'
   contact:
     name: FlightLabs Support
@@ -26,9 +24,7 @@ paths:
     get:
       operationId: getAirports
       summary: Airports by Filter
-      description: 'Retrieve airport information filtered by IATA code, country, or other criteria. Returns comprehensive airport details including codes, coordinates, timezone, runway count, and contact information.
-
-        '
+      description: Retrieve airport information filtered by IATA code, country, or other criteria. Returns comprehensive airport details including codes, coordinates, timezone, runway count, and contact information.
       tags:
       - Airports
       parameters:
@@ -60,6 +56,38 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  parameters:
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -148,38 +176,6 @@ components:
           - medium
           - small
           example: large
-  responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return (integer, up to 10000)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 10000
-        example: 100
-    AccessKey:
-      name: access_key
-      in: query
-      description: Your FlightLabs API access key
-      required: true
-      schema:
-        type: string
-        example: YOUR_ACCESS_KEY
   securitySchemes:
     AccessKey:
       type: apiKey

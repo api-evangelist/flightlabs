@@ -119,14 +119,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   parameters:
-    AccessKey:
-      name: access_key
-      in: query
-      description: Your FlightLabs API access key
-      required: true
-      schema:
-        type: string
-        example: YOUR_ACCESS_KEY
     Limit:
       name: limit
       in: query
@@ -137,7 +129,81 @@ components:
         minimum: 1
         maximum: 10000
         example: 100
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    CountriesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryData'
+    CountryData:
+      type: object
+      description: Country reference data
+      properties:
+        countryId:
+          type: string
+          example: '226'
+        nameCountry:
+          type: string
+          example: United States
+        codeIso2Country:
+          type: string
+          example: US
+        codeIso3Country:
+          type: string
+          example: USA
+        numericIso:
+          type: string
+          example: '840'
+        codeIataCountry:
+          type: string
+          example: US
+        nameContinent:
+          type: string
+          example: North America
+        codeContinentIata:
+          type: string
+          example: NA
+        population:
+          type: integer
+          example: 331000000
+        currencyCode:
+          type: string
+          example: USD
+        currencyName:
+          type: string
+          example: US Dollar
+        languages:
+          type: string
+          example: en-US
+        nameTranslations:
+          type: string
+          example: United States of America
     CityData:
       type: object
       description: City reference data
@@ -199,72 +265,6 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
-    CountryData:
-      type: object
-      description: Country reference data
-      properties:
-        countryId:
-          type: string
-          example: '226'
-        nameCountry:
-          type: string
-          example: United States
-        codeIso2Country:
-          type: string
-          example: US
-        codeIso3Country:
-          type: string
-          example: USA
-        numericIso:
-          type: string
-          example: '840'
-        codeIataCountry:
-          type: string
-          example: US
-        nameContinent:
-          type: string
-          example: North America
-        codeContinentIata:
-          type: string
-          example: NA
-        population:
-          type: integer
-          example: 331000000
-        currencyCode:
-          type: string
-          example: USD
-        currencyName:
-          type: string
-          example: US Dollar
-        languages:
-          type: string
-          example: en-US
-        nameTranslations:
-          type: string
-          example: United States of America
-    CountriesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CountryData'
-  responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     AccessKey:
       type: apiKey

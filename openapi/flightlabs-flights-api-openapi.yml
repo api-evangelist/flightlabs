@@ -512,102 +512,26 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return (integer, up to 10000)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        example: 100
+    AccessKey:
+      name: access_key
+      in: query
+      description: Your FlightLabs API access key
+      required: true
+      schema:
+        type: string
+        example: YOUR_ACCESS_KEY
   schemas:
-    SchedulesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduleEntry'
-    ScheduleEntry:
-      type: object
-      description: Scheduled flight entry
-      properties:
-        airline_iata:
-          type: string
-          example: AA
-        airline_icao:
-          type: string
-          example: AAL
-        flight_iata:
-          type: string
-          example: AA100
-        flight_icao:
-          type: string
-          example: AAL100
-        flight_number:
-          type: string
-          example: '100'
-        cs_airline_iata:
-          type: string
-          description: Code-share airline IATA
-          example: BA
-        cs_flight_number:
-          type: string
-          description: Code-share flight number
-          example: '6000'
-        cs_flight_iata:
-          type: string
-          description: Code-share flight IATA
-          example: BA6000
-        status:
-          type: string
-          example: scheduled
-        dep_iata:
-          type: string
-          example: JFK
-        dep_icao:
-          type: string
-          example: KJFK
-        dep_terminal:
-          type: string
-          example: '8'
-        dep_gate:
-          type: string
-          example: B12
-        dep_time:
-          type: string
-          format: date-time
-          example: '2026-06-13T10:00:00.000'
-        dep_time_utc:
-          type: string
-          format: date-time
-          example: '2026-06-13T14:00:00.000'
-        arr_iata:
-          type: string
-          example: LAX
-        arr_icao:
-          type: string
-          example: KLAX
-        arr_terminal:
-          type: string
-          example: '4'
-        arr_gate:
-          type: string
-          example: A5
-        arr_time:
-          type: string
-          format: date-time
-          example: '2026-06-13T17:30:00.000'
-        arr_time_utc:
-          type: string
-          format: date-time
-          example: '2026-06-13T00:30:00.000'
-        duration:
-          type: integer
-          description: Flight duration in minutes
-          example: 330
-        aircraft_icao:
-          type: string
-          example: B77W
-        delayed:
-          type: integer
-          description: Delay in minutes
-          example: 0
     FlightData:
       type: object
       description: Real-time or historical flight data record
@@ -712,6 +636,91 @@ components:
           type: integer
           description: Last update time (Unix timestamp)
           example: 1719999000
+    ScheduleEntry:
+      type: object
+      description: Scheduled flight entry
+      properties:
+        airline_iata:
+          type: string
+          example: AA
+        airline_icao:
+          type: string
+          example: AAL
+        flight_iata:
+          type: string
+          example: AA100
+        flight_icao:
+          type: string
+          example: AAL100
+        flight_number:
+          type: string
+          example: '100'
+        cs_airline_iata:
+          type: string
+          description: Code-share airline IATA
+          example: BA
+        cs_flight_number:
+          type: string
+          description: Code-share flight number
+          example: '6000'
+        cs_flight_iata:
+          type: string
+          description: Code-share flight IATA
+          example: BA6000
+        status:
+          type: string
+          example: scheduled
+        dep_iata:
+          type: string
+          example: JFK
+        dep_icao:
+          type: string
+          example: KJFK
+        dep_terminal:
+          type: string
+          example: '8'
+        dep_gate:
+          type: string
+          example: B12
+        dep_time:
+          type: string
+          format: date-time
+          example: '2026-06-13T10:00:00.000'
+        dep_time_utc:
+          type: string
+          format: date-time
+          example: '2026-06-13T14:00:00.000'
+        arr_iata:
+          type: string
+          example: LAX
+        arr_icao:
+          type: string
+          example: KLAX
+        arr_terminal:
+          type: string
+          example: '4'
+        arr_gate:
+          type: string
+          example: A5
+        arr_time:
+          type: string
+          format: date-time
+          example: '2026-06-13T17:30:00.000'
+        arr_time_utc:
+          type: string
+          format: date-time
+          example: '2026-06-13T00:30:00.000'
+        duration:
+          type: integer
+          description: Flight duration in minutes
+          example: 330
+        aircraft_icao:
+          type: string
+          example: B77W
+        delayed:
+          type: integer
+          description: Delay in minutes
+          example: 0
     ErrorResponse:
       type: object
       properties:
@@ -727,6 +736,14 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
+    FlightInfoResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/ScheduleEntry'
     FlightsResponse:
       type: object
       properties:
@@ -737,42 +754,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FlightData'
-    FlightInfoResponse:
+    SchedulesResponse:
       type: object
       properties:
         success:
           type: boolean
           example: true
         data:
-          $ref: '#/components/schemas/ScheduleEntry'
-  parameters:
-    AccessKey:
-      name: access_key
-      in: query
-      description: Your FlightLabs API access key
-      required: true
-      schema:
-        type: string
-        example: YOUR_ACCESS_KEY
-    Limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return (integer, up to 10000)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 10000
-        example: 100
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleEntry'
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:

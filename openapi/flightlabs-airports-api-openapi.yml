@@ -138,6 +138,16 @@ components:
           - medium
           - small
           example: large
+    AirportsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportData'
     ErrorResponse:
       type: object
       properties:
@@ -153,16 +163,6 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
-    AirportsResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirportData'
   responses:
     RateLimited:
       description: Rate limit exceeded

@@ -119,6 +119,67 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
+    CityData:
+      type: object
+      description: City reference data
+      properties:
+        cityId:
+          type: string
+          example: '3400'
+        nameCity:
+          type: string
+          example: New York
+        codeIataCity:
+          type: string
+          example: NYC
+        codeIso2Country:
+          type: string
+          example: US
+        latitudeCity:
+          type: number
+          format: float
+          example: 40.7128
+        longitudeCity:
+          type: number
+          format: float
+          example: -74.006
+        timezone:
+          type: string
+          example: America/New_York
+        GMT:
+          type: string
+          example: '-5'
+        population:
+          type: integer
+          example: 8336817
+        nameTranslations:
+          type: string
+          example: New York,Nueva York
+    CountriesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryData'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 101
+            type:
+              type: string
+              example: invalid_access_key
+            info:
+              type: string
+              example: You have not supplied a valid API Access Key.
     CountryData:
       type: object
       description: Country reference data
@@ -172,67 +233,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CityData'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              example: 101
-            type:
-              type: string
-              example: invalid_access_key
-            info:
-              type: string
-              example: You have not supplied a valid API Access Key.
-    CityData:
-      type: object
-      description: City reference data
-      properties:
-        cityId:
-          type: string
-          example: '3400'
-        nameCity:
-          type: string
-          example: New York
-        codeIataCity:
-          type: string
-          example: NYC
-        codeIso2Country:
-          type: string
-          example: US
-        latitudeCity:
-          type: number
-          format: float
-          example: 40.7128
-        longitudeCity:
-          type: number
-          format: float
-          example: -74.006
-        timezone:
-          type: string
-          example: America/New_York
-        GMT:
-          type: string
-          example: '-5'
-        population:
-          type: integer
-          example: 8336817
-        nameTranslations:
-          type: string
-          example: New York,Nueva York
-    CountriesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CountryData'
   parameters:
     Limit:
       name: limit
@@ -253,14 +253,14 @@ components:
         type: string
         example: YOUR_ACCESS_KEY
   responses:
-    RateLimited:
-      description: Rate limit exceeded
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:

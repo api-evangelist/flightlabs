@@ -112,6 +112,16 @@ components:
         codeIataTax:
           type: string
           example: YQ
+    FlightPricesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlightPriceData'
     FlightPriceData:
       type: object
       description: Flight pricing data
@@ -172,16 +182,6 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
-    FlightPricesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlightPriceData'
     TaxesResponse:
       type: object
       properties:
@@ -212,14 +212,14 @@ components:
         type: string
         example: YOUR_ACCESS_KEY
   responses:
-    RateLimited:
-      description: Rate limit exceeded
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:

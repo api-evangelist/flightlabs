@@ -76,6 +76,16 @@ components:
         type: string
         example: YOUR_ACCESS_KEY
   schemas:
+    AirlinesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirlineData'
     ErrorResponse:
       type: object
       properties:
@@ -91,16 +101,6 @@ components:
             info:
               type: string
               example: You have not supplied a valid API Access Key.
-    AirlinesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirlineData'
     AirlineData:
       type: object
       description: Airline reference data
@@ -165,14 +165,14 @@ components:
           format: uri
           example: https://www.aa.com
   responses:
-    RateLimited:
-      description: Rate limit exceeded
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:

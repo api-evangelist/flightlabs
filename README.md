@@ -66,18 +66,118 @@
 
 Aviation data REST API providing real-time and historical flight information, airline schedules, aircraft data, airport details, and global flight tracking with worldwide airline coverage. Operated by Zyla Labs, FlightLabs offers 16+ endpoints covering live flights, flight delays, future predictions, airline routes, and flight pricing.
 
-**Human URL:** https://www.goflightlabs.com
-**Base URL:** https://app.goflightlabs.com
+**Areas:** Aviation · Flights · Airlines · Airports · Flight Tracking · Travel · Real-Time Data
 
-## Links
+## FlightLabs on APIs.io
 
-- [Documentation](https://www.goflightlabs.com/dashboard#api-documentation)
-- [Sign Up](https://www.goflightlabs.com/register)
-- [Login](https://www.goflightlabs.com/login)
-- [Blog](https://www.goflightlabs.com/blog)
-- [Python SDK](https://pypi.org/project/real-time-flights-api/)
+Everything profiled for FlightLabs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/flightlabs/](https://apis.io/providers/flightlabs/)** — or go straight to one of the APIs or properties below.
 
-## Contact
+### APIs (7)
 
-- **Email:** hello@goflightlabs.com
-- **Support Hours:** Monday–Friday, 12:00 PM – 9:00 PM UTC
+- [FlightLabs Aircraft API](https://apis.io/apis/flightlabs/flightlabs-aircraft-api/) — Aircraft and aircraft type reference data endpoints
+- [FlightLabs Airlines API](https://apis.io/apis/flightlabs/flightlabs-airlines-api/) — Airline reference data endpoints
+- [FlightLabs Airports API](https://apis.io/apis/flightlabs/flightlabs-airports-api/) — Airport reference data endpoints
+- [FlightLabs Flights API](https://apis.io/apis/flightlabs/flightlabs-flights-api/) — Real-time and historical flight data endpoints
+- [FlightLabs Geography API](https://apis.io/apis/flightlabs/flightlabs-geography-api/) — Countries and cities reference data endpoints
+- [FlightLabs Pricing API](https://apis.io/apis/flightlabs/flightlabs-pricing-api/) — Flight pricing and fare data endpoints
+- [FlightLabs Routes API](https://apis.io/apis/flightlabs/flightlabs-routes-api/) — Airline route data endpoints
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [flightlabs](https://apis.io/servers/flightlabs/flightlabs/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Flightlabs Agentic Access](https://apis.io/agentic-access/flightlabs/flightlabs-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [AirlineData](https://apis.io/schemas/flightlabs/airline/)
+- [AirportData](https://apis.io/schemas/flightlabs/airport/)
+- [FlightData](https://apis.io/schemas/flightlabs/flight/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Flightlabs Context](https://apis.io/jsonld/flightlabs/flightlabs/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Airlines](https://apis.io/examples/flightlabs/airlines/)
+- [Airports](https://apis.io/examples/flightlabs/airports/)
+- [Real Time Flights](https://apis.io/examples/flightlabs/real-time-flights/)
+- [Routes](https://apis.io/examples/flightlabs/routes/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [FlightLabs Aircraft API](https://apis.io/collections/flightlabs/open-flightlabs-aircraft-api/)
+- [FlightLabs Aircraft Airlines API](https://apis.io/collections/flightlabs/open-flightlabs-airlines-api/)
+- [FlightLabs Aircraft Airports API](https://apis.io/collections/flightlabs/open-flightlabs-airports-api/)
+- [FlightLabs Aircraft Flights API](https://apis.io/collections/flightlabs/open-flightlabs-flights-api/)
+- [FlightLabs Aircraft Geography API](https://apis.io/collections/flightlabs/open-flightlabs-geography-api/)
+- [FlightLabs Aircraft Pricing API](https://apis.io/collections/flightlabs/open-flightlabs-pricing-api/)
+- [FlightLabs Aircraft Routes API](https://apis.io/collections/flightlabs/open-flightlabs-routes-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [FlightLabs — jsonschema rules](https://apis.io/rules/flightlabs/flightlabs-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Flightlabs Authentication](https://apis.io/security/flightlabs/flightlabs-authentication/)
+- [Flightlabs Domain Security](https://apis.io/security/flightlabs/flightlabs-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/flightlabs/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/flightlabs/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/flightlabs/finops/)
+
+## API Evangelist rating
+
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FlightLabs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/flightlabs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
